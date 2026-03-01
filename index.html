@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mayank Patel — Embedded Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Barlow:wght@300;400;600;700;900&family=Barlow+Condensed:wght@700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #080c10;
+    --surface: #0d1117;
+    --panel: #111820;
+    --border: #1e2d3d;
+    --accent: #00d4ff;
+    --accent2: #ff6b35;
+    --accent3: #39ff14;
+    --text: #c9d1d9;
+    --muted: #5c7080;
+    --mono: 'Share Tech Mono', monospace;
+    --sans: 'Barlow', sans-serif;
+    --condensed: 'Barlow Condensed', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-weight: 300;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── GRID BACKGROUND ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,212,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,212,255,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 48px;
+    background: rgba(8,12,16,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+  }
+
+  .nav-logo span { color: var(--muted); }
+
+  nav ul {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+
+  nav a {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    transition: color 0.2s;
+  }
+
+  nav a:hover { color: var(--accent); }
+
+  /* ── HERO ── */
+  #hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 120px 48px 80px;
+    overflow: hidden;
+  }
+
+  .hero-bg-text {
+    position: absolute;
+    right: -20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: var(--condensed);
+    font-size: clamp(120px, 18vw, 260px);
+    font-weight: 900;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(0,212,255,0.07);
+    white-space: nowrap;
+    pointer-events: none;
+    user-select: none;
+    letter-spacing: -0.02em;
+  }
+
+  .hero-content {
+    position: relative;
+    max-width: 800px;
+    z-index: 2;
+  }
+
+  .hero-tag {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--accent);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .hero-tag::before {
+    content: '';
+    width: 32px; height: 1px;
+    background: var(--accent);
+  }
+
+  h1 {
+    font-family: var(--condensed);
+    font-size: clamp(56px, 8vw, 110px);
+    font-weight: 900;
+    line-height: 0.92;
+    letter-spacing: -0.02em;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+
+  h1 .accent { color: var(--accent); }
+
+  .hero-sub {
+    font-family: var(--condensed);
+    font-size: clamp(24px, 4vw, 48px);
+    font-weight: 700;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+  }
+
+  .hero-desc {
+    font-size: 16px;
+    color: var(--text);
+    max-width: 560px;
+    margin-bottom: 48px;
+    line-height: 1.7;
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 48px;
+    margin-bottom: 48px;
+  }
+
+  .stat {
+    border-left: 2px solid var(--accent);
+    padding-left: 16px;
+  }
+
+  .stat-num {
+    font-family: var(--condensed);
+    font-size: 48px;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1;
+  }
+
+  .stat-num span { color: var(--accent); }
+
+  .stat-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  .hero-links {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 28px;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: all 0.2s;
+    cursor: pointer;
+    border: none;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: var(--bg);
+  }
+
+  .btn-primary:hover { background: #fff; }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+  }
+
+  .btn-outline:hover {
+    background: rgba(0,212,255,0.08);
+  }
+
+  /* ── SECTION COMMON ── */
+  section {
+    position: relative;
+    z-index: 1;
+  }
+
+  .section-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 100px 48px;
+  }
+
+  .section-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+    max-width: 200px;
+  }
+
+  .section-title {
+    font-family: var(--condensed);
+    font-size: clamp(36px, 5vw, 64px);
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    margin-bottom: 60px;
+  }
+
+  /* ── SKILLS ── */
+  #skills { background: var(--surface); }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .skill-card {
+    background: var(--panel);
+    padding: 28px 32px;
+    transition: background 0.2s;
+  }
+
+  .skill-card:hover { background: #151f2a; }
+
+  .skill-card-icon {
+    font-size: 24px;
+    margin-bottom: 12px;
+  }
+
+  .skill-card-title {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .tag {
+    font-family: var(--mono);
+    font-size: 11px;
+    padding: 3px 10px;
+    background: rgba(0,212,255,0.06);
+    border: 1px solid rgba(0,212,255,0.15);
+    color: var(--text);
+    letter-spacing: 0.05em;
+  }
+
+  .tag.orange {
+    background: rgba(255,107,53,0.06);
+    border-color: rgba(255,107,53,0.2);
+  }
+
+  .tag.green {
+    background: rgba(57,255,20,0.05);
+    border-color: rgba(57,255,20,0.15);
+  }
+
+  /* ── EXPERIENCE ── */
+  .exp-company {
+    margin-bottom: 64px;
+  }
+
+  .exp-company-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid var(--accent);
+    margin-bottom: 32px;
+  }
+
+  .exp-company-name {
+    font-family: var(--condensed);
+    font-size: 28px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .exp-date {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--accent);
+    padding: 4px 12px;
+    border: 1px solid var(--accent);
+    white-space: nowrap;
+  }
+
+  .exp-projects {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 16px;
+  }
+
+  .exp-project {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent2);
+    padding: 24px 28px;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .exp-project:hover {
+    border-left-color: var(--accent);
+    transform: translateX(4px);
+  }
+
+  .exp-project-title {
+    font-family: var(--condensed);
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 12px;
+  }
+
+  .exp-project p {
+    font-size: 14px;
+    color: var(--text);
+    margin-bottom: 8px;
+    line-height: 1.6;
+  }
+
+  .exp-tech {
+    margin-top: 14px;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+    padding-top: 12px;
+  }
+
+  /* ── TERMINAL SECTION ── */
+  #about { background: var(--bg); }
+
+  .terminal {
+    background: #0a0e12;
+    border: 1px solid var(--border);
+    font-family: var(--mono);
+    overflow: hidden;
+    max-width: 700px;
+  }
+
+  .terminal-bar {
+    background: #1a2332;
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .dot {
+    width: 12px; height: 12px;
+    border-radius: 50%;
+  }
+
+  .dot.r { background: #ff5f56; }
+  .dot.y { background: #ffbd2e; }
+  .dot.g { background: #27c93f; }
+
+  .terminal-title {
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    margin-left: 8px;
+  }
+
+  .terminal-body {
+    padding: 24px;
+    font-size: 13px;
+    line-height: 2;
+  }
+
+  .t-prompt { color: var(--accent3); }
+  .t-cmd { color: #fff; }
+  .t-out { color: var(--text); }
+  .t-key { color: var(--accent); }
+  .t-val { color: var(--accent2); }
+  .t-comment { color: var(--muted); }
+  .t-blank { height: 14px; display: block; }
+
+  /* ── CONTACT ── */
+  #contact { background: var(--surface); }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 24px 28px;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.2s;
+  }
+
+  .contact-item:hover { border-color: var(--accent); }
+
+  .contact-icon {
+    font-size: 28px;
+    flex-shrink: 0;
+  }
+
+  .contact-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .contact-value {
+    font-size: 15px;
+    color: #fff;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 32px 48px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: gap;
+  }
+
+  footer p {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  footer span { color: var(--accent); }
+
+  /* ── DIVIDER ── */
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    opacity: 0.3;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  .cursor {
+    display: inline-block;
+    width: 8px; height: 14px;
+    background: var(--accent3);
+    vertical-align: middle;
+    animation: blink 1s step-end infinite;
+  }
+
+  .fade-up {
+    opacity: 0;
+    animation: fadeUp 0.7s ease forwards;
+  }
+
+  .hero-content > * { animation: fadeUp 0.8s ease both; }
+  .hero-content > *:nth-child(1) { animation-delay: 0.1s; }
+  .hero-content > *:nth-child(2) { animation-delay: 0.2s; }
+  .hero-content > *:nth-child(3) { animation-delay: 0.3s; }
+  .hero-content > *:nth-child(4) { animation-delay: 0.4s; }
+  .hero-content > *:nth-child(5) { animation-delay: 0.5s; }
+  .hero-content > *:nth-child(6) { animation-delay: 0.6s; }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 0; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { padding: 16px 24px; }
+    nav ul { gap: 16px; }
+    .section-inner { padding: 60px 24px; }
+    #hero { padding: 100px 24px 60px; }
+    .hero-stats { gap: 24px; }
+    .contact-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 8px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">MP<span>://</span>embedded.engineer</div>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg-text">EMBEDDED</div>
+  <div class="hero-content">
+    <div class="hero-tag">// Embedded Engineer · Delhi, India</div>
+    <h1>MAYANK<br><span class="accent">PATEL</span></h1>
+    <div class="hero-sub">Systems · Firmware · Hardware</div>
+    <p class="hero-desc">
+      8 years of hands-on experience designing and shipping embedded systems — from GNSS survey instruments achieving centimeter precision, to flight controllers for agricultural drones, to BiPAP medical devices.
+    </p>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">8<span>+</span></div>
+        <div class="stat-label">Years Experience</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">12<span>+</span></div>
+        <div class="stat-label">Products Shipped</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">2<span>cm</span></div>
+        <div class="stat-label">GNSS Accuracy</div>
+      </div>
+    </div>
+    <div class="hero-links">
+      <a href="#experience" class="btn btn-primary">▶ View Work</a>
+      <a href="https://github.com/mayankpatel97" target="_blank" class="btn btn-outline">⌥ GitHub</a>
+      <a href="mailto:mayankpatel468@gmail.com" class="btn btn-outline">✉ Email Me</a>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ABOUT / TERMINAL -->
+<section id="about">
+  <div class="section-inner">
+    <div class="section-label">01 // Profile</div>
+    <div class="section-title">WHO I AM</div>
+    <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start;">
+      <div>
+        <p style="font-size:16px; line-height:1.8; margin-bottom:20px;">
+          I'm an embedded engineer who lives at the intersection of hardware and software — writing bare-metal firmware that controls physical systems with precision and reliability.
+        </p>
+        <p style="font-size:16px; line-height:1.8; margin-bottom:20px;">
+          My career spans two companies: <strong style="color:#fff;">Domautics</strong> (home automation, IoT) and <strong style="color:#fff;">Apogee GNSS</strong> (high-accuracy positioning, drones, and industrial devices). I take products from napkin sketch to manufacturing-ready hardware.
+        </p>
+        <p style="font-size:16px; line-height:1.8;">
+          I hold a Diploma in Electronics (80%) and speak C, C++, and Python fluently — with hardware design as a native language.
+        </p>
+      </div>
+      <div class="terminal">
+        <div class="terminal-bar">
+          <div class="dot r"></div>
+          <div class="dot y"></div>
+          <div class="dot g"></div>
+          <span class="terminal-title">mayank@apogee-gnss:~$</span>
+        </div>
+        <div class="terminal-body">
+          <div><span class="t-prompt">$</span> <span class="t-cmd">cat profile.json</span></div>
+          <span class="t-blank"></span>
+          <div><span class="t-out">{</span></div>
+          <div>&nbsp;&nbsp;<span class="t-key">"name"</span>: <span class="t-val">"Mayank Patel"</span>,</div>
+          <div>&nbsp;&nbsp;<span class="t-key">"role"</span>: <span class="t-val">"Embedded Engineer"</span>,</div>
+          <div>&nbsp;&nbsp;<span class="t-key">"experience"</span>: <span class="t-val">"8 years"</span>,</div>
+          <div>&nbsp;&nbsp;<span class="t-key">"location"</span>: <span class="t-val">"Delhi, India"</span>,</div>
+          <div>&nbsp;&nbsp;<span class="t-key">"specialties"</span>: [</div>
+          <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-val">"GNSS/RTK Systems"</span>,</div>
+          <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-val">"FreeRTOS Firmware"</span>,</div>
+          <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-val">"PCB & Schematic Design"</span>,</div>
+          <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-val">"Embedded Linux"</span>,</div>
+          <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-val">"Drone Systems"</span></div>
+          <div>&nbsp;&nbsp;],</div>
+          <div>&nbsp;&nbsp;<span class="t-key">"status"</span>: <span class="t-val">"available"</span></div>
+          <div><span class="t-out">}</span></div>
+          <span class="t-blank"></span>
+          <div><span class="t-prompt">$</span> <span class="cursor"></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-inner">
+    <div class="section-label">02 // Capabilities</div>
+    <div class="section-title">TECHNICAL SKILLS</div>
+    <div class="skills-grid">
+
+      <div class="skill-card">
+        <div class="skill-card-icon">⚡</div>
+        <div class="skill-card-title">Firmware & RTOS</div>
+        <div class="skill-tags">
+          <span class="tag">C / C++</span>
+          <span class="tag">FreeRTOS</span>
+          <span class="tag">ChibiOS</span>
+          <span class="tag">Bare-Metal</span>
+          <span class="tag">Interrupt Handling</span>
+          <span class="tag">Memory Mgmt</span>
+          <span class="tag">OTA Updates</span>
+          <span class="tag">Bootloader</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-card-icon">🔌</div>
+        <div class="skill-card-title">Microcontrollers</div>
+        <div class="skill-tags">
+          <span class="tag orange">STM32</span>
+          <span class="tag orange">ARM Cortex-M</span>
+          <span class="tag orange">STM8</span>
+          <span class="tag orange">Renesas Synergy</span>
+          <span class="tag orange">STM32MP</span>
+          <span class="tag orange">Raspberry Pi</span>
+          <span class="tag orange">BeagleBone</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-card-icon">📡</div>
+        <div class="skill-card-title">Communication Protocols</div>
+        <div class="skill-tags">
+          <span class="tag">UART</span>
+          <span class="tag">I2C</span>
+          <span class="tag">SPI</span>
+          <span class="tag">CAN</span>
+          <span class="tag">MODBUS</span>
+          <span class="tag">RS485</span>
+          <span class="tag">USB</span>
+          <span class="tag">BLE</span>
+          <span class="tag">Ethernet</span>
+          <span class="tag">4G/LTE</span>
+          <span class="tag">Wi-Fi</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-card-icon">🛰️</div>
+        <div class="skill-card-title">GNSS & Navigation</div>
+        <div class="skill-tags">
+          <span class="tag green">RTK (Real-Time Kinematic)</span>
+          <span class="tag green">PPK</span>
+          <span class="tag green">Multi-Frequency GNSS</span>
+          <span class="tag green">EKF / Kalman Filter</span>
+          <span class="tag green">IMU Tilt Compensation</span>
+          <span class="tag green">Sensor Fusion</span>
+          <span class="tag green">Ardupilot</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-card-icon">🐧</div>
+        <div class="skill-card-title">Embedded Linux</div>
+        <div class="skill-tags">
+          <span class="tag">Buildroot</span>
+          <span class="tag">Kernel Config</span>
+          <span class="tag">GPIO Drivers</span>
+          <span class="tag">I2C Drivers</span>
+          <span class="tag">IOCTL</span>
+          <span class="tag">Multi-threading</span>
+          <span class="tag">Socket API</span>
+          <span class="tag">SOM Design</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-card-icon">🔧</div>
+        <div class="skill-card-title">Hardware & PCB Design</div>
+        <div class="skill-tags">
+          <span class="tag orange">KiCAD</span>
+          <span class="tag orange">Eagle</span>
+          <span class="tag orange">Schematic Design</span>
+          <span class="tag orange">Power Supply</span>
+          <span class="tag orange">RF Design</span>
+          <span class="tag orange">Battery Charger</span>
+          <span class="tag orange">ADC / DAC</span>
+          <span class="tag orange">OP-AMPS</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-card-icon">🐍</div>
+        <div class="skill-card-title">Python & Tools</div>
+        <div class="skill-tags">
+          <span class="tag">Python</span>
+          <span class="tag">PyQt</span>
+          <span class="tag">Tkinter</span>
+          <span class="tag">OpenCV</span>
+          <span class="tag">NumPy</span>
+          <span class="tag">Pandas</span>
+          <span class="tag">Pyserial</span>
+          <span class="tag">Git</span>
+          <span class="tag">STM32CubeIDE</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-card-icon">🖥️</div>
+        <div class="skill-card-title">GUI & Interfaces</div>
+        <div class="skill-tags">
+          <span class="tag green">TouchGFX</span>
+          <span class="tag green">TFT / LTDC</span>
+          <span class="tag green">C# Windows App</span>
+          <span class="tag green">SDRAM</span>
+          <span class="tag green">USB Mass Storage</span>
+          <span class="tag green">eMMC</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-inner">
+    <div class="section-label">03 // Work History</div>
+    <div class="section-title">PROJECTS & EXPERIENCE</div>
+
+    <!-- Apogee -->
+    <div class="exp-company">
+      <div class="exp-company-header">
+        <div>
+          <div class="exp-company-name">Apogee GNSS Pvt. Ltd.</div>
+          <div style="font-size:13px; color:var(--muted); margin-top:4px; font-family:var(--mono);">Senior Embedded Engineer</div>
+        </div>
+        <div class="exp-date">Jun 2019 — Present</div>
+      </div>
+      <div class="exp-projects">
+
+        <div class="exp-project">
+          <div class="exp-project-title">🛰️ RTK GNSS Receiver</div>
+          <p>High-precision land surveying receiver with OTA firmware upgrades, multi-RF chip support, and 2–5 cm accuracy via Extended Kalman Filter tilt compensation.</p>
+          <p>Designed 2S-2P Li-Ion charger, custom BLE with 17dB RF amplifier, 8GB eMMC logging, and USB-HS mass storage.</p>
+          <div class="exp-tech">STM32 · FreeRTOS · BLE · 4G · Multi-freq GNSS · EKF · eMMC</div>
+        </div>
+
+        <div class="exp-project">
+          <div class="exp-project-title">📡 CORS Reference Station</div>
+          <p>Continuously operating GNSS base station on custom Linux platform. Implemented SPI OLED, GNSS, keypad, and RS232 drivers from scratch.</p>
+          <p>Designed SOM motherboard with Ethernet, USB Hub, custom power supplies, and socket APIs for web application integration.</p>
+          <div class="exp-tech">C · Linux · Buildroot · Multi-threading · Ethernet · GNSS</div>
+        </div>
+
+        <div class="exp-project">
+          <div class="exp-project-title">🚁 Drone Master</div>
+          <p>Phantom-4 drone attachment for precise digital mapping. Reverse-engineered drone image capture signals to log precise RTK coordinates at every photo event.</p>
+          <p>Built Python geotagging app to post-process and embed centimeter-accurate GPS into captured images.</p>
+          <div class="exp-tech">C · STM32 · Python · RTKLib · GNSS</div>
+        </div>
+
+        <div class="exp-project">
+          <div class="exp-project-title">✈️ Agricultural Flight Controller</div>
+          <p>Custom quad/hexcopter flight controller purpose-built for spraying applications. Custom RTK GNSS antenna design achieving 2–5 cm coordinate accuracy.</p>
+          <p>Extended Ardupilot firmware with custom spraying and indication logic.</p>
+          <div class="exp-tech">C++ · ChibiOS · IMU · Magnetometer · Ardupilot · RTK</div>
+        </div>
+
+        <div class="exp-project">
+          <div class="exp-project-title">🚜 GNSS Land Leveller</div>
+          <p>FreeRTOS firmware for precision land leveling with Android companion app via RS232 custom protocol. Angle sensing over CAN and OTA bootloader.</p>
+          <div class="exp-tech">C · STM32 · FreeRTOS · CAN · RS232 · GNSS</div>
+        </div>
+
+        <div class="exp-project">
+          <div class="exp-project-title">🫁 BiPAP Medical Device</div>
+          <p>Full C firmware for a breathing therapy machine. TouchGFX GUI on TFT with LTDC interface, SDRAM, BLDC motor driver, and air pressure sensors.</p>
+          <p>USB-FS host for logging sleep reports to external USB drives.</p>
+          <div class="exp-tech">C · STM32 · FreeRTOS · TouchGFX · BLDC · LTDC · SDRAM</div>
+        </div>
+
+        <div class="exp-project">
+          <div class="exp-project-title">🚛 Fleet Management System</div>
+          <p>RTOS firmware with FFT-filtered harsh-cornering detection via accelerometer. 4G server communication with FTP-based firmware upgrades and fuel monitoring.</p>
+          <div class="exp-tech">C · Renesas Synergy · GNSS · 4G · SD Card · Power Mgmt</div>
+        </div>
+
+        <div class="exp-project">
+          <div class="exp-project-title">🚦 Traffic Light Controller</div>
+          <p>Master + 4-slave system over RS485 using MODBUS RTU. 4G and Ethernet server connectivity with fault detection for individual lights.</p>
+          <div class="exp-tech">C · STM8 (slave) · STM32 (master) · RS485 · MODBUS</div>
+        </div>
+
+        <div class="exp-project">
+          <div class="exp-project-title">💧 Overhead Tank Controller</div>
+          <p>3-phase motor control, water level and electricity monitoring with continuous cloud publishing. Designed full schematics and firmware.</p>
+          <div class="exp-tech">C · STM32 · 4G · RS485 · RTC · Contactor</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Domautics -->
+    <div class="exp-company">
+      <div class="exp-company-header">
+        <div>
+          <div class="exp-company-name">Domautics Pvt. Ltd.</div>
+          <div style="font-size:13px; color:var(--muted); margin-top:4px; font-family:var(--mono);">Embedded Engineer</div>
+        </div>
+        <div class="exp-date">Oct 2015 — Jun 2019</div>
+      </div>
+      <div class="exp-projects">
+
+        <div class="exp-project">
+          <div class="exp-project-title">💡 Phase-Cut Smart Dimmer</div>
+          <p>Internet-connected TRIAC phase-cut dimmer with zero-cross detection firmware and RF communication protocol to central home automation unit.</p>
+          <div class="exp-tech">C · STM8 · RF · IoT</div>
+        </div>
+
+        <div class="exp-project">
+          <div class="exp-project-title">⚡ Electronic Load</div>
+          <p>Configurable constant-current electronic load with potentiometer control, live current/voltage display, and precise measurement output.</p>
+          <div class="exp-tech">C · STM8 · ADC · Display</div>
+        </div>
+
+        <div class="exp-project">
+          <div class="exp-project-title">👁️ Presence Sensor</div>
+          <p>Low-resolution thermal camera presence detection (body heat signature) with Wi-Fi connectivity for real-time cloud status updates.</p>
+          <div class="exp-tech">C · Thermal Sensor · Wi-Fi · Cloud</div>
+        </div>
+
+        <div class="exp-project">
+          <div class="exp-project-title">🏠 4-Point Home Automation Switch</div>
+          <p>Smart switch controlling 3 lights + 1 fan as part of an integrated home automation ecosystem.</p>
+          <div class="exp-tech">Embedded C · Home Automation</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="section-label">04 // Contact</div>
+    <div class="section-title">GET IN TOUCH</div>
+    <p style="font-size:16px; color:var(--text); max-width:500px; margin-bottom:40px;">
+      Available for challenging embedded engineering roles, consulting, or product development partnerships.
+    </p>
+    <div class="contact-grid">
+      <a href="mailto:mayankpatel468@gmail.com" class="contact-item">
+        <div class="contact-icon">✉️</div>
+        <div>
+          <div class="contact-label">Email</div>
+          <div class="contact-value">mayankpatel468@gmail.com</div>
+        </div>
+      </a>
+      <a href="tel:+918802846486" class="contact-item">
+        <div class="contact-icon">📱</div>
+        <div>
+          <div class="contact-label">Phone</div>
+          <div class="contact-value">+91-8802846486</div>
+        </div>
+      </a>
+      <a href="https://github.com/mayankpatel97" target="_blank" class="contact-item">
+        <div class="contact-icon">⌥</div>
+        <div>
+          <div class="contact-label">GitHub</div>
+          <div class="contact-value">github.com/mayankpatel97</div>
+        </div>
+      </a>
+      <div class="contact-item">
+        <div class="contact-icon">📍</div>
+        <div>
+          <div class="contact-label">Location</div>
+          <div class="contact-value">Delhi, India</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 <span>Mayank Patel</span> · Embedded Engineer</p>
+  <p>Built for precision. <span>//</span> Designed to impress.</p>
+</footer>
+
+<script>
+  // Intersection Observer for fade-up animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.skill-card, .exp-project').forEach((el, i) => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = `opacity 0.5s ease ${i * 0.04}s, transform 0.5s ease ${i * 0.04}s`;
+    observer.observe(el);
+  });
+</script>
+
+</body>
+</html>
