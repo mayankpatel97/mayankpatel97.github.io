@@ -3,1003 +3,1202 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mayank Patel — Embedded Engineer</title>
+<title>Mayank Patel — Embedded Systems Engineer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Barlow:wght@300;400;600;700;900&family=Barlow+Condensed:wght@700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg: #080c10;
-    --surface: #0d1117;
-    --panel: #111820;
-    --border: #1e2d3d;
-    --accent: #00d4ff;
-    --accent2: #ff6b35;
-    --accent3: #39ff14;
-    --text: #c9d1d9;
-    --muted: #5c7080;
-    --mono: 'Share Tech Mono', monospace;
-    --sans: 'Barlow', sans-serif;
-    --condensed: 'Barlow Condensed', sans-serif;
-  }
-
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: var(--sans);
-    font-weight: 300;
-    line-height: 1.6;
-    overflow-x: hidden;
-  }
-
-  /* ── GRID BACKGROUND ── */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(0,212,255,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0,212,255,0.03) 1px, transparent 1px);
-    background-size: 40px 40px;
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  /* ── NAV ── */
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 16px 48px;
-    background: rgba(8,12,16,0.85);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-  }
-
-  .nav-logo {
-    font-family: var(--mono);
-    font-size: 13px;
-    color: var(--accent);
-    letter-spacing: 0.1em;
-  }
-
-  .nav-logo span { color: var(--muted); }
-
-  nav ul {
-    display: flex;
-    gap: 32px;
-    list-style: none;
-  }
-
-  nav a {
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--muted);
-    text-decoration: none;
-    letter-spacing: 0.08em;
-    transition: color 0.2s;
-  }
-
-  nav a:hover { color: var(--accent); }
-
-  /* ── HERO ── */
-  #hero {
-    position: relative;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    padding: 120px 48px 80px;
-    overflow: hidden;
-  }
-
-  .hero-bg-text {
-    position: absolute;
-    right: -20px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-family: var(--condensed);
-    font-size: clamp(120px, 18vw, 260px);
-    font-weight: 900;
-    color: transparent;
-    -webkit-text-stroke: 1px rgba(0,212,255,0.07);
-    white-space: nowrap;
-    pointer-events: none;
-    user-select: none;
-    letter-spacing: -0.02em;
-  }
-
-  .hero-content {
-    position: relative;
-    max-width: 800px;
-    z-index: 2;
-  }
-
-  .hero-tag {
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--accent);
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    margin-bottom: 24px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .hero-tag::before {
-    content: '';
-    width: 32px; height: 1px;
-    background: var(--accent);
-  }
-
-  h1 {
-    font-family: var(--condensed);
-    font-size: clamp(56px, 8vw, 110px);
-    font-weight: 900;
-    line-height: 0.92;
-    letter-spacing: -0.02em;
-    color: #fff;
-    margin-bottom: 8px;
-  }
-
-  h1 .accent { color: var(--accent); }
-
-  .hero-sub {
-    font-family: var(--condensed);
-    font-size: clamp(24px, 4vw, 48px);
-    font-weight: 700;
-    color: var(--muted);
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    margin-bottom: 32px;
-  }
-
-  .hero-desc {
-    font-size: 16px;
-    color: var(--text);
-    max-width: 560px;
-    margin-bottom: 48px;
-    line-height: 1.7;
-  }
-
-  .hero-stats {
-    display: flex;
-    gap: 48px;
-    margin-bottom: 48px;
-  }
-
-  .stat {
-    border-left: 2px solid var(--accent);
-    padding-left: 16px;
-  }
-
-  .stat-num {
-    font-family: var(--condensed);
-    font-size: 48px;
-    font-weight: 900;
-    color: #fff;
-    line-height: 1;
-  }
-
-  .stat-num span { color: var(--accent); }
-
-  .stat-label {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--muted);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    margin-top: 4px;
-  }
-
-  .hero-links {
-    display: flex;
-    gap: 16px;
-    flex-wrap: wrap;
-  }
-
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 12px 28px;
-    font-family: var(--mono);
-    font-size: 12px;
-    letter-spacing: 0.1em;
-    text-decoration: none;
-    text-transform: uppercase;
-    transition: all 0.2s;
-    cursor: pointer;
-    border: none;
-  }
-
-  .btn-primary {
-    background: var(--accent);
-    color: var(--bg);
-  }
-
-  .btn-primary:hover { background: #fff; }
-
-  .btn-outline {
-    background: transparent;
-    color: var(--accent);
-    border: 1px solid var(--accent);
-  }
-
-  .btn-outline:hover {
-    background: rgba(0,212,255,0.08);
-  }
-
-  /* ── SECTION COMMON ── */
-  section {
-    position: relative;
-    z-index: 1;
-  }
-
-  .section-inner {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 100px 48px;
-  }
-
-  .section-label {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--accent);
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    margin-bottom: 16px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .section-label::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: var(--border);
-    max-width: 200px;
-  }
-
-  .section-title {
-    font-family: var(--condensed);
-    font-size: clamp(36px, 5vw, 64px);
-    font-weight: 900;
-    color: #fff;
-    letter-spacing: -0.02em;
-    line-height: 1;
-    margin-bottom: 60px;
-  }
-
-  /* ── SKILLS ── */
-  #skills { background: var(--surface); }
-
-  .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1px;
-    background: var(--border);
-    border: 1px solid var(--border);
-  }
-
-  .skill-card {
-    background: var(--panel);
-    padding: 28px 32px;
-    transition: background 0.2s;
-  }
-
-  .skill-card:hover { background: #151f2a; }
-
-  .skill-card-icon {
-    font-size: 24px;
-    margin-bottom: 12px;
-  }
-
-  .skill-card-title {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--accent);
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    margin-bottom: 12px;
-  }
-
-  .skill-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-  }
-
-  .tag {
-    font-family: var(--mono);
-    font-size: 11px;
-    padding: 3px 10px;
-    background: rgba(0,212,255,0.06);
-    border: 1px solid rgba(0,212,255,0.15);
-    color: var(--text);
-    letter-spacing: 0.05em;
-  }
-
-  .tag.orange {
-    background: rgba(255,107,53,0.06);
-    border-color: rgba(255,107,53,0.2);
-  }
-
-  .tag.green {
-    background: rgba(57,255,20,0.05);
-    border-color: rgba(57,255,20,0.15);
-  }
-
-  /* ── EXPERIENCE ── */
-  .exp-company {
-    margin-bottom: 64px;
-  }
-
-  .exp-company-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    gap: 12px;
-    padding-bottom: 16px;
-    border-bottom: 2px solid var(--accent);
-    margin-bottom: 32px;
-  }
-
-  .exp-company-name {
-    font-family: var(--condensed);
-    font-size: 28px;
-    font-weight: 700;
-    color: #fff;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-  }
-
-  .exp-date {
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--accent);
-    padding: 4px 12px;
-    border: 1px solid var(--accent);
-    white-space: nowrap;
-  }
-
-  .exp-projects {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-    gap: 16px;
-  }
-
-  .exp-project {
-    background: var(--panel);
-    border: 1px solid var(--border);
-    border-left: 3px solid var(--accent2);
-    padding: 24px 28px;
-    transition: border-color 0.2s, transform 0.2s;
-  }
-
-  .exp-project:hover {
-    border-left-color: var(--accent);
-    transform: translateX(4px);
-  }
-
-  .exp-project-title {
-    font-family: var(--condensed);
-    font-size: 18px;
-    font-weight: 700;
-    color: #fff;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-bottom: 12px;
-  }
-
-  .exp-project p {
-    font-size: 14px;
-    color: var(--text);
-    margin-bottom: 8px;
-    line-height: 1.6;
-  }
-
-  .exp-tech {
-    margin-top: 14px;
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--muted);
-    border-top: 1px solid var(--border);
-    padding-top: 12px;
-  }
-
-  /* ── TERMINAL SECTION ── */
-  #about { background: var(--bg); }
-
-  .terminal {
-    background: #0a0e12;
-    border: 1px solid var(--border);
-    font-family: var(--mono);
-    overflow: hidden;
-    max-width: 700px;
-  }
-
-  .terminal-bar {
-    background: #1a2332;
-    padding: 10px 16px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .dot {
-    width: 12px; height: 12px;
-    border-radius: 50%;
-  }
-
-  .dot.r { background: #ff5f56; }
-  .dot.y { background: #ffbd2e; }
-  .dot.g { background: #27c93f; }
-
-  .terminal-title {
-    font-size: 11px;
-    color: var(--muted);
-    letter-spacing: 0.05em;
-    margin-left: 8px;
-  }
-
-  .terminal-body {
-    padding: 24px;
-    font-size: 13px;
-    line-height: 2;
-  }
-
-  .t-prompt { color: var(--accent3); }
-  .t-cmd { color: #fff; }
-  .t-out { color: var(--text); }
-  .t-key { color: var(--accent); }
-  .t-val { color: var(--accent2); }
-  .t-comment { color: var(--muted); }
-  .t-blank { height: 14px; display: block; }
-
-  /* ── CONTACT ── */
-  #contact { background: var(--surface); }
-
-  .contact-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 32px;
-  }
-
-  .contact-item {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    padding: 24px 28px;
-    background: var(--panel);
-    border: 1px solid var(--border);
-    text-decoration: none;
-    color: inherit;
-    transition: border-color 0.2s;
-  }
-
-  .contact-item:hover { border-color: var(--accent); }
-
-  .contact-icon {
-    font-size: 28px;
-    flex-shrink: 0;
-  }
-
-  .contact-label {
-    font-family: var(--mono);
-    font-size: 10px;
-    color: var(--muted);
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    margin-bottom: 4px;
-  }
-
-  .contact-value {
-    font-size: 15px;
-    color: #fff;
-  }
-
-  /* ── FOOTER ── */
-  footer {
-    padding: 32px 48px;
-    border-top: 1px solid var(--border);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: gap;
-  }
-
-  footer p {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--muted);
-  }
-
-  footer span { color: var(--accent); }
-
-  /* ── DIVIDER ── */
-  .divider {
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--accent), transparent);
-    opacity: 0.3;
-  }
-
-  /* ── ANIMATIONS ── */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  @keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
-  }
-
-  .cursor {
-    display: inline-block;
-    width: 8px; height: 14px;
-    background: var(--accent3);
-    vertical-align: middle;
-    animation: blink 1s step-end infinite;
-  }
-
-  .fade-up {
-    opacity: 0;
-    animation: fadeUp 0.7s ease forwards;
-  }
-
-  .hero-content > * { animation: fadeUp 0.8s ease both; }
-  .hero-content > *:nth-child(1) { animation-delay: 0.1s; }
-  .hero-content > *:nth-child(2) { animation-delay: 0.2s; }
-  .hero-content > *:nth-child(3) { animation-delay: 0.3s; }
-  .hero-content > *:nth-child(4) { animation-delay: 0.4s; }
-  .hero-content > *:nth-child(5) { animation-delay: 0.5s; }
-  .hero-content > *:nth-child(6) { animation-delay: 0.6s; }
-
-  /* ── SCROLLBAR ── */
-  ::-webkit-scrollbar { width: 5px; }
-  ::-webkit-scrollbar-track { background: var(--bg); }
-  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 0; }
-  ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
-
-  /* ── RESPONSIVE ── */
-  @media (max-width: 768px) {
-    nav { padding: 16px 24px; }
-    nav ul { gap: 16px; }
-    .section-inner { padding: 60px 24px; }
-    #hero { padding: 100px 24px 60px; }
-    .hero-stats { gap: 24px; }
-    .contact-grid { grid-template-columns: 1fr; }
-    footer { flex-direction: column; gap: 8px; text-align: center; }
-  }
+/* ── TOKENS ── */
+:root {
+  --cream:   #f9f6f0;
+  --paper:   #f2ede3;
+  --dark:    #0e1118;
+  --dark2:   #161b26;
+  --dark3:   #1e2535;
+  --navy:    #0d1e3d;
+  --gold:    #b8973e;
+  --gold2:   #d4af5a;
+  --gold3:   #e8cc88;
+  --red:     #b52c2c;
+  --blue:    #1e4fa3;
+  --teal:    #197466;
+  --ink:     #181c28;
+  --muted:   #636b7e;
+  --border:  rgba(20,24,38,0.10);
+  --serif:   'Cormorant Garamond', Georgia, serif;
+  --sans:    'Outfit', system-ui, sans-serif;
+  --mono:    'JetBrains Mono', monospace;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{background:var(--cream);color:var(--ink);font-family:var(--sans);font-weight:300;line-height:1.6;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{text-decoration:none;color:inherit}
+
+/* ── NAV ── */
+#nav{
+  position:fixed;top:0;left:0;right:0;z-index:999;
+  height:68px;display:flex;align-items:center;justify-content:space-between;
+  padding:0 56px;
+  background:rgba(249,246,240,0.96);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+}
+.nav-left{display:flex;align-items:center;gap:14px}
+.nav-badge{
+  width:38px;height:38px;background:var(--dark);color:var(--gold3);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--serif);font-size:17px;font-weight:700;flex-shrink:0;
+}
+.nav-id .nm{font-size:14px;font-weight:600;letter-spacing:-0.01em;line-height:1.2}
+.nav-id .rl{font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase}
+#nav ul{display:flex;gap:32px;list-style:none}
+#nav ul a{font-size:13px;font-weight:400;color:var(--muted);transition:color .2s;letter-spacing:.01em}
+#nav ul a:hover{color:var(--ink)}
+.nav-cta{
+  padding:9px 22px;background:var(--dark);color:#fff;
+  font-size:12px;font-weight:600;letter-spacing:.05em;
+  transition:background .2s;white-space:nowrap;
+}
+.nav-cta:hover{background:var(--navy)}
+
+/* ── HERO ── */
+#hero{
+  min-height:100vh;padding-top:68px;
+  display:grid;grid-template-columns:52% 48%;
+}
+.hero-l{
+  display:flex;flex-direction:column;justify-content:center;
+  padding:88px 64px 80px 56px;
+  background:var(--cream);border-right:1px solid var(--border);
+}
+.badge-online{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:var(--teal);
+  text-transform:uppercase;margin-bottom:24px;
+}
+.dot-live{width:6px;height:6px;background:#22c55e;border-radius:50%;animation:livepulse 2s ease-in-out infinite}
+@keyframes livepulse{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(34,197,94,.4)}50%{opacity:.7;box-shadow:0 0 0 6px rgba(34,197,94,0)}}
+h1.name{
+  font-family:var(--serif);font-size:clamp(58px,5.5vw,90px);
+  font-weight:700;line-height:.88;letter-spacing:-.02em;
+  color:var(--dark);margin-bottom:10px;
+}
+h1.name span{color:var(--navy);display:block}
+.role-tag{
+  font-family:var(--mono);font-size:11px;letter-spacing:.14em;
+  color:var(--muted);text-transform:uppercase;margin-bottom:28px;
+  display:flex;align-items:center;gap:8px;
+}
+.role-tag::before{content:'';width:28px;height:1px;background:var(--border)}
+.hero-copy{
+  font-size:16px;line-height:1.8;color:var(--muted);
+  max-width:460px;margin-bottom:28px;font-weight:300;
+}
+.hero-copy strong{color:var(--ink);font-weight:500}
+
+/* Defence banner */
+.def-banner{
+  display:flex;align-items:flex-start;gap:14px;
+  padding:16px 20px;
+  background:var(--navy);
+  border-left:3px solid var(--gold2);
+  margin-bottom:36px;max-width:460px;
+}
+.def-banner-flag{font-size:22px;margin-top:2px;flex-shrink:0}
+.def-banner-body{}
+.def-banner-title{
+  font-family:var(--mono);font-size:9px;letter-spacing:.18em;
+  color:var(--gold3);text-transform:uppercase;margin-bottom:4px;
+}
+.def-banner-text{font-size:13px;color:rgba(255,255,255,.65);line-height:1.55;font-weight:300}
+.def-banner-text strong{color:rgba(255,255,255,.9);font-weight:500}
+
+.hero-btns{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:52px}
+.btn-solid{
+  display:inline-flex;align-items:center;gap:7px;
+  padding:13px 28px;background:var(--dark);color:#fff;
+  font-size:13px;font-weight:500;letter-spacing:.02em;
+  transition:background .2s,transform .15s;
+}
+.btn-solid:hover{background:var(--navy);transform:translateY(-1px)}
+.btn-line{
+  display:inline-flex;align-items:center;gap:7px;
+  padding:13px 28px;background:transparent;color:var(--ink);
+  border:1.5px solid var(--border);font-size:13px;font-weight:400;
+  transition:border-color .2s;
+}
+.btn-line:hover{border-color:var(--ink)}
+.kpis{display:flex;gap:0;border-top:1px solid var(--border);padding-top:36px}
+.kpi{padding-right:36px;margin-right:36px;border-right:1px solid var(--border)}
+.kpi:last-child{border-right:none}
+.kpi-n{font-family:var(--serif);font-size:52px;font-weight:700;line-height:1;color:var(--dark);letter-spacing:-.04em}
+.kpi-n em{font-style:normal;color:var(--gold);font-size:28px}
+.kpi-l{font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;margin-top:4px}
+
+/* Hero Right */
+.hero-r{display:flex;flex-direction:column;background:var(--dark2);overflow:hidden}
+/* Profile photo slot */
+.profile-slot{
+  flex:0 0 42%;position:relative;overflow:hidden;
+  background:var(--dark3);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  border-bottom:1px solid rgba(255,255,255,.05);
+}
+.profile-slot input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;z-index:10}
+.profile-slot img.loaded{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:5}
+.upload-hint{text-align:center;pointer-events:none}
+.upload-hint-icon{font-size:40px;opacity:.12;margin-bottom:10px}
+.upload-hint-text{font-family:var(--mono);font-size:10px;color:rgba(255,255,255,.18);letter-spacing:.1em;text-transform:uppercase;line-height:1.7}
+.upload-hint-text em{color:rgba(255,255,255,.3);font-style:normal;display:block}
+.profile-slot-hover{
+  position:absolute;inset:0;z-index:6;background:rgba(0,0,0,.45);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;transition:opacity .2s;pointer-events:none;
+}
+.profile-slot:hover .profile-slot-hover{opacity:1}
+.profile-slot-hover span{font-family:var(--mono);font-size:11px;color:#fff;letter-spacing:.1em;border:1px solid rgba(255,255,255,.4);padding:8px 18px}
+
+/* GNSS live panel */
+.gnss-live{flex:1;position:relative;overflow:hidden}
+.gnss-live-svg{position:absolute;inset:0;width:100%;height:100%}
+.gnss-status-bar{
+  position:absolute;bottom:0;left:0;right:0;
+  display:grid;grid-template-columns:1fr 1fr 1fr;
+  background:rgba(14,17,24,.85);backdrop-filter:blur(10px);
+  border-top:1px solid rgba(255,255,255,.06);
+}
+.gsb-cell{padding:14px 20px;border-right:1px solid rgba(255,255,255,.05)}
+.gsb-cell:last-child{border-right:none}
+.gsb-label{font-family:var(--mono);font-size:8px;color:rgba(255,255,255,.25);letter-spacing:.14em;text-transform:uppercase;margin-bottom:3px}
+.gsb-val{font-family:var(--mono);font-size:14px;font-weight:500;color:#fff}
+.gsb-val.green{color:#4ade80}
+.gsb-val.gold{color:var(--gold3)}
+
+/* ── TICKER ── */
+.ticker{background:var(--dark);padding:13px 0;overflow:hidden;display:flex;border-top:1px solid rgba(255,255,255,.04)}
+.ticker-inner{display:flex;animation:ticker 32s linear infinite;white-space:nowrap}
+.tick{
+  font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.1em;
+  color:rgba(255,255,255,.4);padding:0 32px;text-transform:uppercase;
+  display:flex;align-items:center;gap:32px;
+}
+.tick::after{content:'◆';font-size:6px;color:var(--gold);opacity:.6}
+@keyframes ticker{to{transform:translateX(-50%)}}
+
+/* ── DEFENCE SECTION ── */
+#defence{
+  background:var(--navy);padding:96px 56px;
+  position:relative;overflow:hidden;
+}
+#defence::after{
+  content:'DEFENCE';position:absolute;right:-30px;top:50%;transform:translateY(-50%);
+  font-family:var(--serif);font-size:240px;font-weight:700;
+  color:rgba(255,255,255,.02);pointer-events:none;white-space:nowrap;letter-spacing:-.04em;
+}
+.def-wrap{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1.2fr;gap:80px;align-items:center}
+.def-eyebrow{font-family:var(--mono);font-size:10px;letter-spacing:.2em;color:var(--gold2);text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.def-eyebrow::before{content:'';width:22px;height:1px;background:var(--gold2)}
+.def-heading{font-family:var(--serif);font-size:clamp(34px,3.5vw,56px);font-weight:700;color:#fff;line-height:1;letter-spacing:-.03em;margin-bottom:22px}
+.def-heading em{font-style:italic;color:var(--gold3)}
+.def-body{font-size:15px;line-height:1.8;color:rgba(255,255,255,.5);font-weight:300;max-width:460px;margin-bottom:32px}
+.def-body strong{color:rgba(255,255,255,.8);font-weight:500}
+.def-stamp{
+  display:inline-flex;align-items:center;gap:14px;
+  padding:14px 20px;
+  border:1px solid rgba(184,151,62,.25);background:rgba(184,151,62,.06);
+}
+.def-stamp-icon{font-size:26px;flex-shrink:0}
+.def-stamp-text{font-family:var(--mono);font-size:9px;letter-spacing:.1em;line-height:1.7;color:rgba(255,255,255,.4)}
+.def-stamp-text strong{color:var(--gold3);display:block;font-size:10px;letter-spacing:.12em;margin-bottom:2px}
+.def-cards{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.def-card{
+  padding:26px 22px;
+  background:rgba(255,255,255,.035);
+  border:1px solid rgba(255,255,255,.07);
+  border-top:2px solid var(--gold);
+  transition:background .2s;
+}
+.def-card:hover{background:rgba(255,255,255,.06)}
+.def-card-icon{font-size:24px;margin-bottom:12px}
+.def-card-title{font-size:14px;font-weight:600;color:#fff;margin-bottom:7px;letter-spacing:-.01em}
+.def-card-text{font-size:12px;color:rgba(255,255,255,.38);line-height:1.65;font-weight:300}
+
+/* ── PRODUCTS ── */
+#products{background:var(--paper);padding:96px 56px}
+.prod-wrap{max-width:1200px;margin:0 auto}
+.sec-label{font-family:var(--mono);font-size:9px;letter-spacing:.22em;color:var(--blue);text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.sec-label::after{content:'';width:28px;height:1px;background:var(--blue);flex-shrink:0}
+.sec-heading{font-family:var(--serif);font-size:clamp(38px,4vw,64px);font-weight:700;line-height:.92;letter-spacing:-.04em;color:var(--dark);margin-bottom:60px}
+.sec-heading em{font-style:italic;color:var(--navy)}
+
+.prod-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--border);border:1px solid var(--border);margin-bottom:4px}
+.prod-card{background:var(--cream);padding:44px;position:relative;overflow:hidden;transition:background .2s}
+.prod-card:hover{background:#fff}
+.prod-card.dark{background:var(--dark2)}
+.prod-card.dark:hover{background:var(--dark3)}
+.prod-num{font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:.18em;margin-bottom:24px}
+.prod-card.dark .prod-num{color:rgba(255,255,255,.25)}
+.acc-badge{
+  position:absolute;top:22px;right:22px;
+  background:var(--teal);color:#fff;
+  font-family:var(--mono);font-size:9px;letter-spacing:.1em;padding:5px 12px;
+}
+.prod-svg-wrap{margin-bottom:28px}
+.prod-title{font-family:var(--serif);font-size:26px;font-weight:700;color:var(--dark);margin-bottom:10px;letter-spacing:-.02em}
+.prod-card.dark .prod-title{color:#fff}
+.prod-desc{font-size:13px;line-height:1.7;color:var(--muted);margin-bottom:18px;font-weight:300}
+.prod-card.dark .prod-desc{color:rgba(255,255,255,.4)}
+.prod-tags{display:flex;flex-wrap:wrap;gap:5px}
+.ptag{font-family:var(--mono);font-size:9px;padding:3px 10px;border:1px solid var(--border);color:var(--muted);letter-spacing:.04em}
+.prod-card.dark .ptag{border-color:rgba(255,255,255,.08);color:rgba(255,255,255,.35)}
+
+/* Photo slots row */
+.photo-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px;background:var(--border);border:1px solid var(--border)}
+.pslot{
+  aspect-ratio:4/3;position:relative;overflow:hidden;
+  background:var(--dark3);cursor:pointer;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  transition:background .2s;
+}
+.pslot:hover{background:#252a38}
+.pslot input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;z-index:8}
+.pslot img.loaded{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:5}
+.pslot-icon{font-size:28px;opacity:.14;margin-bottom:8px;pointer-events:none}
+.pslot-label{font-family:var(--mono);font-size:9px;color:rgba(255,255,255,.18);letter-spacing:.1em;text-transform:uppercase;text-align:center;line-height:1.7;pointer-events:none}
+.pslot-label em{color:rgba(255,255,255,.3);font-style:normal;display:block;font-size:8px}
+.pslot-hover{position:absolute;inset:0;z-index:6;background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .2s;pointer-events:none}
+.pslot:hover .pslot-hover{opacity:1}
+.pslot-hover span{font-family:var(--mono);font-size:10px;color:#fff;letter-spacing:.08em;border:1px solid rgba(255,255,255,.3);padding:7px 16px}
+.photo-row-label{font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:.14em;text-transform:uppercase;margin-bottom:8px;margin-top:24px}
+
+/* ── ABOUT / SPLIT ── */
+#about{display:grid;grid-template-columns:1fr 1fr;min-height:75vh;border-top:1px solid var(--border)}
+.about-img-side{
+  position:relative;overflow:hidden;background:var(--dark3);
+  display:flex;flex-direction:column;border-right:1px solid var(--border);
+}
+.about-img-main{
+  flex:1;position:relative;overflow:hidden;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--dark2);
+}
+.about-img-main input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;z-index:8}
+.about-img-main img.loaded{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:5}
+.about-img-main .pslot-hover{pointer-events:none}
+.about-img-main:hover .pslot-hover{opacity:1}
+.about-cap{
+  padding:24px 32px;background:var(--dark);
+  border-top:1px solid rgba(255,255,255,.05);
+}
+.about-cap-label{font-family:var(--mono);font-size:8px;color:rgba(255,255,255,.22);letter-spacing:.15em;text-transform:uppercase;margin-bottom:5px}
+.about-cap-text{font-size:13px;color:rgba(255,255,255,.6);font-weight:300;line-height:1.5}
+.about-text{
+  padding:80px 64px 80px 56px;
+  display:flex;flex-direction:column;justify-content:center;
+  background:var(--cream);
+}
+.about-p{font-size:16px;line-height:1.85;color:var(--muted);font-weight:300;margin-bottom:18px}
+.about-p strong{color:var(--ink);font-weight:500}
+.about-meta{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:32px}
+.meta-item{padding:16px 18px;background:var(--paper);border-left:2px solid var(--blue)}
+.meta-label{font-family:var(--mono);font-size:8px;color:var(--muted);letter-spacing:.14em;text-transform:uppercase;margin-bottom:4px}
+.meta-val{font-size:13px;font-weight:500;color:var(--ink)}
+
+/* ── SKILLS ── */
+#skills{background:var(--dark);padding:96px 56px}
+.sk-wrap{max-width:1200px;margin:0 auto}
+.sk-wrap .sec-label{color:var(--gold2)}
+.sk-wrap .sec-label::after{background:var(--gold2)}
+.sk-wrap .sec-heading{color:#fff}
+.sk-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.05)}
+.sk-card{background:var(--dark2);padding:28px 24px;transition:background .2s}
+.sk-card:hover{background:var(--dark3)}
+.sk-card-icon{font-size:26px;margin-bottom:14px}
+.sk-card-name{font-size:13px;font-weight:600;color:#fff;margin-bottom:14px;letter-spacing:-.01em}
+.sk-items{display:flex;flex-direction:column;gap:0}
+.sk-item{
+  font-family:var(--mono);font-size:10px;color:rgba(255,255,255,.35);
+  padding:5px 0;border-bottom:1px solid rgba(255,255,255,.04);
+  display:flex;align-items:center;gap:7px;letter-spacing:.02em;
+}
+.sk-item::before{content:'—';color:rgba(255,255,255,.12);flex-shrink:0}
+.sk-item.hi{color:rgba(255,255,255,.72)}
+.sk-item.hi::before{color:var(--gold2)}
+
+/* ── EXPERIENCE ── */
+#experience{background:var(--cream);padding:96px 56px;border-top:1px solid var(--border)}
+.exp-wrap{max-width:1200px;margin:0 auto}
+.company-section{margin-bottom:72px;padding-bottom:72px;border-bottom:1px solid var(--border)}
+.company-section:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none}
+.company-hd{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:12px;margin-bottom:28px;padding-bottom:18px;border-bottom:2px solid var(--dark)}
+.company-nm{font-family:var(--serif);font-size:28px;font-weight:700;color:var(--dark);letter-spacing:-.03em}
+.company-pd{font-family:var(--mono);font-size:10px;padding:6px 14px;background:var(--dark);color:rgba(255,255,255,.7);letter-spacing:.08em}
+.proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border)}
+.proj-card{background:var(--cream);padding:28px;transition:background .2s;position:relative}
+.proj-card:hover{background:#fff}
+.proj-icon{font-size:24px;margin-bottom:10px;display:block}
+.proj-num{font-family:var(--mono);font-size:8px;color:var(--muted);letter-spacing:.14em;margin-bottom:8px}
+.proj-title{font-size:15px;font-weight:600;color:var(--dark);margin-bottom:8px;letter-spacing:-.01em;line-height:1.2}
+.proj-desc{font-size:12px;color:var(--muted);line-height:1.65;margin-bottom:12px;font-weight:300}
+.proj-tech{font-family:var(--mono);font-size:9px;color:var(--blue);border-top:1px solid var(--border);padding-top:10px;letter-spacing:.03em}
+
+/* ── CONTACT ── */
+#contact{background:var(--dark2);display:grid;grid-template-columns:1fr 1fr}
+.contact-l{padding:96px 72px 96px 56px;border-right:1px solid rgba(255,255,255,.05);display:flex;flex-direction:column;justify-content:center}
+.contact-l .sec-label{color:var(--gold2)}
+.contact-l .sec-label::after{background:var(--gold2)}
+.contact-heading{font-family:var(--serif);font-size:clamp(38px,4vw,64px);font-weight:700;color:#fff;line-height:.92;letter-spacing:-.04em;margin-bottom:20px}
+.contact-heading em{font-style:italic;color:var(--gold3)}
+.contact-sub{font-size:15px;color:rgba(255,255,255,.38);line-height:1.8;font-weight:300;max-width:400px;margin-bottom:36px}
+.contact-r{padding:96px 56px;display:flex;flex-direction:column;justify-content:center;gap:10px}
+.c-card{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:20px 24px;
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);
+  transition:background .2s,border-color .2s;
+}
+.c-card:hover{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.12)}
+.c-card-l{display:flex;align-items:center;gap:14px}
+.c-icon{font-size:18px;flex-shrink:0}
+.c-label{font-family:var(--mono);font-size:8px;color:rgba(255,255,255,.22);letter-spacing:.15em;text-transform:uppercase;margin-bottom:3px}
+.c-val{font-size:14px;font-weight:500;color:#fff}
+.c-arrow{font-size:16px;color:rgba(255,255,255,.18);transition:color .2s,transform .2s}
+.c-card:hover .c-arrow{color:var(--gold3);transform:translateX(3px)}
+
+/* ── FOOTER ── */
+footer{background:var(--dark);padding:22px 56px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;border-top:1px solid rgba(255,255,255,.04)}
+footer p{font-family:var(--mono);font-size:10px;color:rgba(255,255,255,.2);letter-spacing:.06em}
+footer span{color:var(--gold2)}
+
+/* ── REVEAL ── */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1024px){
+  #nav{padding:0 24px}
+  #nav ul{display:none}
+  #hero{grid-template-columns:1fr}
+  .hero-r{min-height:420px}
+  .hero-l{padding:72px 28px}
+  #about{grid-template-columns:1fr}
+  .about-img-side{min-height:380px}
+  .about-text{padding:56px 28px}
+  .def-wrap{grid-template-columns:1fr;gap:48px}
+  .def-cards{grid-template-columns:1fr 1fr}
+  #products,#skills,#experience,#defence,#contact{padding:72px 28px}
+  .prod-grid{grid-template-columns:1fr}
+  .photo-row{grid-template-columns:1fr 1fr}
+  .sk-grid{grid-template-columns:1fr 1fr}
+  .proj-grid{grid-template-columns:1fr 1fr}
+  #contact{grid-template-columns:1fr}
+  .contact-l,.contact-r{padding:64px 28px}
+  footer{padding:18px 28px}
+  .kpis{gap:0;flex-wrap:wrap}
+  .kpi{padding:16px 24px 0 0;margin-right:24px}
+}
+@media(max-width:600px){
+  .proj-grid{grid-template-columns:1fr}
+  .def-cards{grid-template-columns:1fr}
+  .photo-row{grid-template-columns:1fr}
+  .about-meta{grid-template-columns:1fr}
+  h1.name{font-size:52px}
+}
 </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-  <div class="nav-logo">MP<span>://</span>embedded.engineer</div>
+<!-- ══════════ NAV ══════════ -->
+<nav id="nav">
+  <div class="nav-left">
+    <div class="nav-badge">MP</div>
+    <div class="nav-id">
+      <div class="nm">Mayank Patel</div>
+      <div class="rl">Embedded Systems Engineer</div>
+    </div>
+  </div>
   <ul>
     <li><a href="#about">About</a></li>
+    <li><a href="#products">Products</a></li>
+    <li><a href="#defence">Defence</a></li>
     <li><a href="#skills">Skills</a></li>
-    <li><a href="#experience">Experience</a></li>
+    <li><a href="#experience">Work</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
+  <a href="mailto:mayankpatel468@gmail.com" class="nav-cta">Hire Me →</a>
 </nav>
 
-<!-- HERO -->
+<!-- ══════════ HERO ══════════ -->
 <section id="hero">
-  <div class="hero-bg-text">EMBEDDED</div>
-  <div class="hero-content">
-    <div class="hero-tag">// Embedded Engineer · Delhi, India</div>
-    <h1>MAYANK<br><span class="accent">PATEL</span></h1>
-    <div class="hero-sub">Systems · Firmware · Hardware</div>
-    <p class="hero-desc">
-      8 years of hands-on experience designing and shipping embedded systems — from GNSS survey instruments achieving centimeter precision, to flight controllers for agricultural drones, to BiPAP medical devices.
+  <!-- Left text -->
+  <div class="hero-l">
+    <div class="badge-online"><span class="dot-live"></span>Available for new roles</div>
+    <h1 class="name">Mayank<span>Patel</span></h1>
+    <div class="role-tag">Embedded Systems · Firmware · PCB Design</div>
+    <p class="hero-copy">
+      <strong>8 years</strong> engineering precision embedded systems — from RTK GNSS receivers achieving <strong>±2 cm accuracy</strong> to agricultural flight controllers and industrial IoT devices. I own the full stack: schematic, firmware, Linux.
     </p>
-    <div class="hero-stats">
-      <div class="stat">
-        <div class="stat-num">8<span>+</span></div>
-        <div class="stat-label">Years Experience</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num">12<span>+</span></div>
-        <div class="stat-label">Products Shipped</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num">2<span>cm</span></div>
-        <div class="stat-label">GNSS Accuracy</div>
+    <div class="def-banner">
+      <div class="def-banner-flag">🛡️</div>
+      <div class="def-banner-body">
+        <div class="def-banner-title">🇮🇳 Defence-Grade Engineering</div>
+        <div class="def-banner-text">Military-grade GNSS receivers designed by Mayank are <strong>actively deployed in Indian Armed Forces defence systems</strong> — meeting the most demanding precision and reliability standards.</div>
       </div>
     </div>
-    <div class="hero-links">
-      <a href="#experience" class="btn btn-primary">▶ View Work</a>
-      <a href="https://github.com/mayankpatel97" target="_blank" class="btn btn-outline">⌥ GitHub</a>
-      <a href="mailto:mayankpatel468@gmail.com" class="btn btn-outline">✉ Email Me</a>
+    <div class="hero-btns">
+      <a href="#products" class="btn-solid">View GNSS Products</a>
+      <a href="#contact" class="btn-line">Get in Touch →</a>
+    </div>
+    <div class="kpis">
+      <div class="kpi"><div class="kpi-n">8<em>+</em></div><div class="kpi-l">Years Experience</div></div>
+      <div class="kpi"><div class="kpi-n">12<em>+</em></div><div class="kpi-l">Products Shipped</div></div>
+      <div class="kpi"><div class="kpi-n">2<em>cm</em></div><div class="kpi-l">GNSS Accuracy</div></div>
+    </div>
+  </div>
+
+  <!-- Right: photo + GNSS animation -->
+  <div class="hero-r">
+    <!-- Profile photo slot -->
+    <div class="profile-slot" id="profileSlot">
+      <input type="file" accept="image/*" onchange="loadImg(this,'profileImg','profileHint')">
+      <img id="profileImg" class="loaded" style="display:none" alt="Profile">
+      <div class="upload-hint" id="profileHint">
+        <div class="upload-hint-icon">👤</div>
+        <div class="upload-hint-text"><em>Your Profile Photo</em>Click to upload</div>
+      </div>
+      <div class="profile-slot-hover"><span>Change Photo</span></div>
+    </div>
+
+    <!-- Animated GNSS constellation -->
+    <div class="gnss-live">
+      <svg class="gnss-live-svg" viewBox="0 0 480 260" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <style>
+            .sat1{animation:orb1 9s linear infinite;transform-origin:240px 130px}
+            .sat2{animation:orb2 13s linear infinite;transform-origin:240px 130px}
+            .sat3{animation:orb3 11s linear infinite 2s;transform-origin:240px 130px}
+            .sat4{animation:orb1 15s linear infinite reverse 1s;transform-origin:240px 130px}
+            @keyframes orb1{to{transform:rotate(360deg)}}
+            @keyframes orb2{to{transform:rotate(-360deg)}}
+            @keyframes orb3{to{transform:rotate(360deg)}}
+            .sig{stroke-dasharray:5 5;animation:dash 1.8s linear infinite}
+            .sig2{stroke-dasharray:5 5;animation:dash 2.2s linear infinite .4s}
+            .sig3{stroke-dasharray:5 5;animation:dash 1.6s linear infinite .8s}
+            .sig4{stroke-dasharray:5 5;animation:dash 2s linear infinite 1.2s}
+            @keyframes dash{to{stroke-dashoffset:-20}}
+            .ring{animation:ringOut 2.8s ease-out infinite}
+            .ring2{animation:ringOut 2.8s ease-out infinite .93s}
+            .ring3{animation:ringOut 2.8s ease-out infinite 1.87s}
+            @keyframes ringOut{0%{r:4;opacity:.8}100%{r:72;opacity:0}}
+          </style>
+          <radialGradient id="gEarth" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#1a3a5c" stop-opacity=".5"/>
+            <stop offset="100%" stop-color="#0d1e3d" stop-opacity=".9"/>
+          </radialGradient>
+          <radialGradient id="gBlue" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#4a9fd4" stop-opacity=".18"/>
+            <stop offset="100%" stop-color="#4a9fd4" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+
+        <rect width="480" height="260" fill="#080f1e"/>
+        <!-- Stars -->
+        <g fill="rgba(255,255,255,.3)">
+          <circle cx="18" cy="14" r=".9"/><circle cx="55" cy="8" r=".7"/>
+          <circle cx="110" cy="18" r="1"/><circle cx="190" cy="11" r=".8"/>
+          <circle cx="270" cy="16" r=".9"/><circle cx="350" cy="9" r=".7"/>
+          <circle cx="420" cy="20" r="1"/><circle cx="460" cy="12" r=".8"/>
+          <circle cx="32" cy="45" r=".7"/><circle cx="148" cy="6" r="1"/>
+          <circle cx="310" cy="32" r=".7"/><circle cx="78" cy="55" r=".8"/>
+          <circle cx="400" cy="44" r=".9"/><circle cx="240" cy="4" r=".7"/>
+        </g>
+        <!-- Earth curve -->
+        <ellipse cx="240" cy="310" rx="360" ry="130" fill="url(#gEarth)"/>
+
+        <!-- Orbit rings (faint) -->
+        <ellipse cx="240" cy="160" rx="190" ry="55" fill="none" stroke="rgba(74,159,212,.07)" stroke-width="1"/>
+        <ellipse cx="240" cy="160" rx="155" ry="42" fill="none" stroke="rgba(74,159,212,.05)" stroke-width="1" stroke-dasharray="4 8"/>
+        <ellipse cx="240" cy="160" rx="220" ry="65" fill="none" stroke="rgba(233,196,106,.05)" stroke-width="1"/>
+
+        <!-- Satellites -->
+        <g class="sat1">
+          <rect x="228" y="98" width="14" height="9" rx="1.5" fill="#1a3a5c" stroke="#4a9fd4" stroke-width=".9"/>
+          <line x1="220" y1="102.5" x2="226" y2="102.5" stroke="#4a9fd4" stroke-width="1.4"/>
+          <line x1="242" y1="102.5" x2="248" y2="102.5" stroke="#4a9fd4" stroke-width="1.4"/>
+          <circle cx="235" cy="102.5" r="2" fill="#4a9fd4" opacity=".6"/>
+        </g>
+        <g class="sat2">
+          <rect x="348" y="128" width="13" height="8" rx="1.5" fill="#1a3a2a" stroke="#4ade80" stroke-width=".9"/>
+          <line x1="340" y1="132" x2="346" y2="132" stroke="#4ade80" stroke-width="1.2"/>
+          <line x1="361" y1="132" x2="367" y2="132" stroke="#4ade80" stroke-width="1.2"/>
+          <circle cx="354.5" cy="132" r="2" fill="#4ade80" opacity=".6"/>
+        </g>
+        <g class="sat3">
+          <rect x="110" y="118" width="13" height="8" rx="1.5" fill="#3a2a1a" stroke="#e9c46a" stroke-width=".9"/>
+          <line x1="102" y1="122" x2="108" y2="122" stroke="#e9c46a" stroke-width="1.2"/>
+          <line x1="123" y1="122" x2="129" y2="122" stroke="#e9c46a" stroke-width="1.2"/>
+          <circle cx="116.5" cy="122" r="2" fill="#e9c46a" opacity=".6"/>
+        </g>
+        <g class="sat4">
+          <rect x="300" y="82" width="12" height="8" rx="1.5" fill="#2a1a3a" stroke="#c084fc" stroke-width=".9"/>
+          <line x1="292" y1="86" x2="298" y2="86" stroke="#c084fc" stroke-width="1.1"/>
+          <line x1="312" y1="86" x2="318" y2="86" stroke="#c084fc" stroke-width="1.1"/>
+          <circle cx="306" cy="86" r="2" fill="#c084fc" opacity=".5"/>
+        </g>
+
+        <!-- Signal lines to receiver -->
+        <line class="sig" x1="235" y1="106" x2="240" y2="175" stroke="#4a9fd4" stroke-width=".8" opacity=".55"/>
+        <line class="sig2" x1="355" y1="135" x2="240" y2="175" stroke="#4ade80" stroke-width=".8" opacity=".55"/>
+        <line class="sig3" x1="117" y1="125" x2="240" y2="175" stroke="#e9c46a" stroke-width=".8" opacity=".55"/>
+        <line class="sig4" x1="305" y1="89" x2="240" y2="175" stroke="#c084fc" stroke-width=".7" opacity=".45"/>
+
+        <!-- Receiver on ground -->
+        <rect x="212" y="164" width="56" height="26" rx="4" fill="#1a2f50" stroke="#4a9fd4" stroke-width="1.2"/>
+        <rect x="216" y="168" width="48" height="18" rx="2" fill="#0d1f38" stroke="#2a4a68" stroke-width=".5"/>
+        <text font-family="monospace" font-size="5.5" fill="rgba(74,159,212,.55)" x="219" y="177">APOGEE RTK</text>
+        <text font-family="monospace" font-size="5.5" fill="#4ade80" x="219" y="183">FIXED · ±2cm</text>
+        <!-- Antenna spike -->
+        <line x1="240" y1="164" x2="240" y2="150" stroke="#4a9fd4" stroke-width="1.4"/>
+        <circle cx="240" cy="148" r="3" fill="#4a9fd4"/>
+        <!-- Ping rings -->
+        <circle class="ring" cx="240" cy="175" r="4" fill="none" stroke="#4a9fd4" stroke-width="1.4"/>
+        <circle class="ring2" cx="240" cy="175" r="4" fill="none" stroke="#4a9fd4" stroke-width="1"/>
+        <circle class="ring3" cx="240" cy="175" r="4" fill="none" stroke="#4a9fd4" stroke-width=".6"/>
+
+        <!-- Glow -->
+        <circle cx="240" cy="175" r="60" fill="url(#gBlue)"/>
+
+        <!-- Status bar labels -->
+        <text font-family="monospace" font-size="6.5" fill="rgba(255,255,255,.18)" x="14" y="248">SATS:24  |  FIX:RTK_FIXED  |  HDOP:0.4  |  AGE:0.2s  |  SIGNAL:STRONG</text>
+      </svg>
+
+      <!-- Status bar -->
+      <div class="gnss-status-bar">
+        <div class="gsb-cell"><div class="gsb-label">Fix Status</div><div class="gsb-val green">RTK FIXED</div></div>
+        <div class="gsb-cell"><div class="gsb-label">Accuracy</div><div class="gsb-val gold">±2 cm</div></div>
+        <div class="gsb-cell"><div class="gsb-label">Satellites</div><div class="gsb-val">24 tracked</div></div>
+      </div>
     </div>
   </div>
 </section>
 
-<div class="divider"></div>
+<!-- ══════════ TICKER ══════════ -->
+<div class="ticker">
+  <div class="ticker-inner" id="ticker">
+    <span class="tick">RTK GNSS</span><span class="tick">STM32 · ARM Cortex-M</span>
+    <span class="tick">FreeRTOS</span><span class="tick">PCB Design</span>
+    <span class="tick">Ardupilot · Drones</span><span class="tick">Embedded Linux</span>
+    <span class="tick">Sensor Fusion · EKF</span><span class="tick">OTA Firmware</span>
+    <span class="tick">KiCAD · Eagle</span><span class="tick">4G · BLE · Wi-Fi</span>
+    <span class="tick">Defence Grade</span><span class="tick">Make in India</span>
+    <span class="tick">RTK GNSS</span><span class="tick">STM32 · ARM Cortex-M</span>
+    <span class="tick">FreeRTOS</span><span class="tick">PCB Design</span>
+    <span class="tick">Ardupilot · Drones</span><span class="tick">Embedded Linux</span>
+    <span class="tick">Sensor Fusion · EKF</span><span class="tick">OTA Firmware</span>
+    <span class="tick">KiCAD · Eagle</span><span class="tick">4G · BLE · Wi-Fi</span>
+    <span class="tick">Defence Grade</span><span class="tick">Make in India</span>
+  </div>
+</div>
 
-<!-- ABOUT / TERMINAL -->
+<!-- ══════════ DEFENCE ══════════ -->
+<section id="defence">
+  <div class="def-wrap">
+    <div class="reveal">
+      <div class="def-eyebrow">Defence Credentials</div>
+      <h2 class="def-heading">Trusted by<br>the <em>Indian Military</em></h2>
+      <p class="def-body">
+        Military-grade GNSS receivers engineered at Apogee GNSS under Mayank's design are <strong>actively deployed across Indian Armed Forces defence systems</strong>. These systems meet the most demanding precision, durability, and operational security standards required for mission-critical applications in the field.
+      </p>
+      <div class="def-stamp">
+        <div class="def-stamp-icon">🇮🇳</div>
+        <div class="def-stamp-text">
+          <strong>Make in India · Defence Sector</strong>
+          Indigenous GNSS technology for national security
+        </div>
+      </div>
+    </div>
+    <div class="def-cards reveal">
+      <div class="def-card">
+        <div class="def-card-icon">🎯</div>
+        <div class="def-card-title">Centimeter-Level Accuracy</div>
+        <div class="def-card-text">RTK + Extended Kalman Filter with 6-DoF IMU tilt compensation — ±2 cm positioning even on difficult terrain and dynamic platforms.</div>
+      </div>
+      <div class="def-card">
+        <div class="def-card-icon">🔒</div>
+        <div class="def-card-title">Military Ruggedization</div>
+        <div class="def-card-text">Designed to withstand defence-grade shock, vibration, thermal cycling, and EMI environments encountered in active field operations.</div>
+      </div>
+      <div class="def-card">
+        <div class="def-card-icon">📡</div>
+        <div class="def-card-title">Multi-Constellation + NavIC</div>
+        <div class="def-card-text">Supports GPS, GLONASS, Galileo, BeiDou, and India's own NavIC system for sovereign, unjammable positioning capability.</div>
+      </div>
+      <div class="def-card">
+        <div class="def-card-icon">⚡</div>
+        <div class="def-card-title">Field-Ready Power System</div>
+        <div class="def-card-text">Custom 2S-2P Li-Ion charger and fuel gauge IC for extended field missions with reliable power monitoring and protection circuits.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ PRODUCTS ══════════ -->
+<section id="products">
+  <div class="prod-wrap">
+    <div class="sec-label">GNSS Products</div>
+    <h2 class="sec-heading">Hardware I've<br><em>Designed & Built</em></h2>
+
+    <div class="prod-grid">
+
+      <!-- RTK Handheld Receiver -->
+      <div class="prod-card dark reveal">
+        <div class="acc-badge">±2 cm RTK</div>
+        <div class="prod-num">// 01 · RTK HANDHELD RECEIVER</div>
+        <!-- Detailed RTK GNSS Receiver SVG -->
+        <div class="prod-svg-wrap">
+          <svg viewBox="0 0 300 290" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:260px;display:block;margin:0 auto">
+            <defs>
+              <style>
+                @keyframes ledG{0%,100%{opacity:1}50%{opacity:.15}}
+                @keyframes ledB{0%,100%{opacity:.4}40%{opacity:1}}
+                @keyframes scan{0%{transform:translateY(0);opacity:0}20%{opacity:.5}80%{opacity:.5}100%{transform:translateY(52px);opacity:0}}
+                .lg{animation:ledG 1.3s ease-in-out infinite}
+                .lb{animation:ledB 2s ease-in-out infinite}
+                .sc{animation:scan 3s ease-in-out infinite;transform-box:fill-box}
+              </style>
+              <linearGradient id="rb" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#2a3652"/><stop offset="100%" stop-color="#18253a"/>
+              </linearGradient>
+              <linearGradient id="rbtop" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#3a4a68"/><stop offset="100%" stop-color="#2a3855"/>
+              </linearGradient>
+              <linearGradient id="dome" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#3a4560"/><stop offset="100%" stop-color="#202a40"/>
+              </linearGradient>
+              <filter id="glow"><feGaussianBlur stdDeviation="2" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+            </defs>
+
+            <!-- Drop shadow -->
+            <ellipse cx="150" cy="284" rx="72" ry="7" fill="rgba(0,0,0,.35)"/>
+
+            <!-- ── GNSS DOME TOP ── -->
+            <ellipse cx="150" cy="72" rx="62" ry="17" fill="url(#dome)" stroke="#4a5a78" stroke-width="1.2"/>
+            <ellipse cx="150" cy="70" rx="54" ry="13" fill="#1e2a40" stroke="#3a4868" stroke-width=".8"/>
+            <ellipse cx="150" cy="70" rx="40" ry="9" fill="#161e32" stroke="#2a3858" stroke-width=".6"/>
+            <ellipse cx="150" cy="70" rx="24" ry="5" fill="#0f1726" stroke="#1e2e4a" stroke-width=".5"/>
+            <!-- Dome antenna center -->
+            <circle cx="150" cy="70" r="7" fill="#0a1020" stroke="#4a9fd4" stroke-width="1.4" filter="url(#glow)"/>
+            <circle cx="150" cy="70" r="3.5" fill="#070e1a" stroke="#4a9fd4" stroke-width=".8"/>
+            <!-- Dome alignment marks -->
+            <line x1="130" y1="70" x2="136" y2="70" stroke="rgba(74,159,212,.3)" stroke-width=".7"/>
+            <line x1="164" y1="70" x2="170" y2="70" stroke="rgba(74,159,212,.3)" stroke-width=".7"/>
+            <line x1="150" y1="57" x2="150" y2="63" stroke="rgba(74,159,212,.3)" stroke-width=".7"/>
+            <!-- Ring grooves on dome -->
+            <ellipse cx="150" cy="70" rx="16" ry="3.5" fill="none" stroke="rgba(255,255,255,.08)" stroke-width=".5"/>
+            <!-- Label under dome -->
+            <text font-family="monospace" font-size="5.5" fill="rgba(74,159,212,.45)" text-anchor="middle" x="150" y="98">MULTI-BAND GNSS ANTENNA</text>
+
+            <!-- ── MAIN BODY ── -->
+            <rect x="88" y="88" width="124" height="172" rx="8" fill="url(#rb)" stroke="#3a4a68" stroke-width="1.4"/>
+            <!-- Top bevel -->
+            <rect x="90" y="88" width="120" height="7" rx="3.5" fill="url(#rbtop)"/>
+            <!-- Grip texture left -->
+            <g stroke="rgba(255,255,255,.04)" stroke-width=".7">
+              <line x1="88" y1="110" x2="88" y2="240"/>
+              <line x1="91" y1="110" x2="91" y2="240"/>
+            </g>
+            <!-- Grip texture right -->
+            <g stroke="rgba(255,255,255,.04)" stroke-width=".7">
+              <line x1="212" y1="110" x2="212" y2="240"/>
+              <line x1="209" y1="110" x2="209" y2="240"/>
+            </g>
+
+            <!-- ── SCREEN ── -->
+            <rect x="100" y="102" width="100" height="72" rx="3" fill="#040c14" stroke="#1a3050" stroke-width="1"/>
+            <!-- Screen border highlight -->
+            <rect x="101" y="103" width="98" height="70" rx="2" fill="none" stroke="rgba(74,159,212,.12)" stroke-width=".5"/>
+            <!-- Screen content -->
+            <text font-family="monospace" font-size="5" fill="rgba(74,159,212,.4)" x="104" y="114">APOGEE GNSS  v3.2.1</text>
+            <line x1="100" y1="117" x2="200" y2="117" stroke="rgba(74,159,212,.15)" stroke-width=".5"/>
+            <!-- Status line -->
+            <text font-family="monospace" font-size="6.5" fill="#4ade80" x="104" y="128">RTK FIXED ●</text>
+            <!-- Coordinates -->
+            <text font-family="monospace" font-size="5.2" fill="#e9c46a" x="104" y="139">LAT  28°36′42.186″ N</text>
+            <text font-family="monospace" font-size="5.2" fill="#e9c46a" x="104" y="148">LON  77°13′28.947″ E</text>
+            <text font-family="monospace" font-size="5.2" fill="rgba(255,255,255,.35)" x="104" y="157">ALT  226.41 m  ±0.018</text>
+            <!-- Bottom status bar on screen -->
+            <rect x="100" y="162" width="100" height="12" rx="0" fill="rgba(74,159,212,.06)"/>
+            <text font-family="monospace" font-size="4.5" fill="rgba(74,159,212,.5)" x="104" y="170">SAT:24  HDOP:0.4  ±2cm</text>
+            <!-- Scan line -->
+            <rect class="sc" x="100" y="118" width="100" height="1.5" fill="rgba(74,159,212,.4)" rx=".5"/>
+
+            <!-- ── LED ROW ── -->
+            <g>
+              <!-- PWR Green -->
+              <circle class="lg" cx="108" cy="186" r="4.5" fill="#22c55e" filter="url(#glow)"/>
+              <circle cx="108" cy="186" r="4.5" fill="none" stroke="#15803d" stroke-width=".8"/>
+              <!-- RTK Blue -->
+              <circle class="lb" cx="124" cy="186" r="4.5" fill="#3b82f6" filter="url(#glow)"/>
+              <circle cx="124" cy="186" r="4.5" fill="none" stroke="#1d4ed8" stroke-width=".8"/>
+              <!-- 4G Amber -->
+              <circle cx="140" cy="186" r="4.5" fill="#f59e0b" opacity=".75"/>
+              <circle cx="140" cy="186" r="4.5" fill="none" stroke="#92400e" stroke-width=".8"/>
+              <!-- BLE Purple -->
+              <circle cx="156" cy="186" r="3.5" fill="#a855f7" opacity=".6"/>
+              <circle cx="156" cy="186" r="3.5" fill="none" stroke="#6b21a8" stroke-width=".7"/>
+            </g>
+            <!-- LED labels -->
+            <text font-family="monospace" font-size="4" fill="rgba(255,255,255,.2)" x="104" y="198">PWR  RTK  4G   BT</text>
+
+            <!-- ── BUTTONS ── -->
+            <rect x="100" y="205" width="34" height="13" rx="2.5" fill="#141e30" stroke="#2a3a52" stroke-width=".8"/>
+            <text font-family="monospace" font-size="5" fill="rgba(255,255,255,.3)" x="106" y="214">MENU</text>
+            <rect x="139" y="205" width="28" height="13" rx="2.5" fill="#141e30" stroke="#2a3a52" stroke-width=".8"/>
+            <text font-family="monospace" font-size="5" fill="rgba(255,255,255,.3)" x="144" y="214">MARK</text>
+            <rect x="172" y="205" width="28" height="13" rx="2.5" fill="#0f1e38" stroke="#2a4a72" stroke-width=".8"/>
+            <text font-family="monospace" font-size="5" fill="#4a9fd4" x="180" y="214">FIX</text>
+
+            <!-- ── PORTS ── -->
+            <rect x="126" y="224" width="48" height="10" rx="2" fill="#0d1620" stroke="#1a2535" stroke-width=".7"/>
+            <rect x="132" y="226" width="14" height="6" rx="1" fill="#080e16" stroke="#243040" stroke-width=".5"/>
+            <text font-family="monospace" font-size="4" fill="rgba(255,255,255,.18)" x="149" y="231">USB-C</text>
+            <!-- Side BLE port -->
+            <rect x="88" y="152" width="7" height="22" rx="2" fill="#101825" stroke="#1e2e42" stroke-width=".7"/>
+
+            <!-- ── POLE MOUNT ── -->
+            <rect x="138" y="258" width="24" height="16" rx="2" fill="#101825" stroke="#1e2e40" stroke-width=".8"/>
+            <g stroke="#1e2e40" stroke-width=".6">
+              <line x1="143" y1="258" x2="143" y2="274"/>
+              <line x1="148" y1="258" x2="148" y2="274"/>
+              <line x1="153" y1="258" x2="153" y2="274"/>
+              <line x1="158" y1="258" x2="158" y2="274"/>
+            </g>
+            <!-- Model label -->
+            <text font-family="monospace" font-size="4" fill="rgba(255,255,255,.12)" text-anchor="middle" x="150" y="252">AP-RTK-300 · APOGEE GNSS PVT LTD</text>
+          </svg>
+        </div>
+        <div class="prod-title">RTK GNSS Survey Receiver</div>
+        <div class="prod-desc">High-precision handheld receiver for land surveying. Features 6-DoF IMU tilt compensation via EKF, 8 GB eMMC data logging, OTA firmware upgrades, custom BLE 5.0 with 17 dB RF amplifier, and 2S-2P Li-Ion battery management.</div>
+        <div class="prod-tags">
+          <span class="ptag">STM32H7</span><span class="ptag">FreeRTOS</span>
+          <span class="ptag">Multi-Freq GNSS</span><span class="ptag">BLE 5.0</span>
+          <span class="ptag">4G LTE</span><span class="ptag">eMMC 8GB</span>
+          <span class="ptag">EKF/IMU</span><span class="ptag">KiCAD</span>
+        </div>
+      </div>
+
+      <!-- CORS Base Station -->
+      <div class="prod-card reveal">
+        <div class="acc-badge" style="background:var(--blue)">REFERENCE STN</div>
+        <div class="prod-num">// 02 · CORS BASE STATION</div>
+        <!-- CORS Station SVG -->
+        <div class="prod-svg-wrap">
+          <svg viewBox="0 0 300 290" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:260px;display:block;margin:0 auto">
+            <defs>
+              <style>
+                @keyframes wavering{0%,100%{opacity:.25;r:6}50%{opacity:.8;r:14}}
+                @keyframes wavering2{0%,100%{opacity:.15;r:6}50%{opacity:.6;r:20}}
+                @keyframes wavering3{0%,100%{opacity:.08;r:6}50%{opacity:.4;r:28}}
+                @keyframes ethBlink{0%,100%{opacity:.35}50%{opacity:1}}
+                .aw1{animation:wavering 2s ease-in-out infinite}
+                .aw2{animation:wavering2 2s ease-in-out infinite .5s}
+                .aw3{animation:wavering3 2s ease-in-out infinite 1s}
+                .eb{animation:ethBlink 1.5s ease-in-out infinite}
+              </style>
+              <linearGradient id="encl" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#2a2a2a"/><stop offset="100%" stop-color="#1a1a1a"/>
+              </linearGradient>
+              <linearGradient id="rack" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stop-color="#222"/><stop offset="100%" stop-color="#1a1a1a"/>
+              </linearGradient>
+            </defs>
+
+            <ellipse cx="150" cy="284" rx="80" ry="7" fill="rgba(0,0,0,.2)"/>
+
+            <!-- Mounting mast -->
+            <rect x="147" y="26" width="6" height="130" rx="2" fill="#888" stroke="#777" stroke-width=".5"/>
+            <!-- Cross arms -->
+            <rect x="104" y="42" width="92" height="5" rx="2" fill="#888" stroke="#777" stroke-width=".5"/>
+            <!-- Vibration isolators -->
+            <rect x="145" y="24" width="10" height="8" rx="2" fill="#555" stroke="#666" stroke-width=".5"/>
+            <rect x="145" y="148" width="10" height="8" rx="2" fill="#555" stroke="#666" stroke-width=".5"/>
+
+            <!-- ── GNSS ANTENNA ── -->
+            <ellipse cx="150" cy="46" rx="40" ry="11" fill="#333" stroke="#555" stroke-width="1"/>
+            <ellipse cx="150" cy="44" rx="34" ry="8.5" fill="#2a2a2a" stroke="#444" stroke-width=".8"/>
+            <ellipse cx="150" cy="44" rx="24" ry="5.5" fill="#1e1e1e" stroke="#3a3a3a" stroke-width=".6"/>
+            <ellipse cx="150" cy="44" rx="12" ry="2.8" fill="#141414" stroke="#2a2a2a" stroke-width=".5"/>
+            <circle cx="150" cy="44" r="5" fill="#0d0d0d" stroke="#1e74a4" stroke-width="1.4"/>
+            <circle cx="150" cy="44" r="2.5" fill="#090909" stroke="#1e74a4" stroke-width=".7"/>
+            <!-- Antenna signal -->
+            <circle class="aw1" cx="150" cy="30" r="6" fill="none" stroke="#1e74a4" stroke-width="1"/>
+            <circle class="aw2" cx="150" cy="27" r="6" fill="none" stroke="#1e74a4" stroke-width=".8"/>
+            <circle class="aw3" cx="150" cy="24" r="6" fill="none" stroke="#1e74a4" stroke-width=".5"/>
+            <!-- Coax cable from antenna -->
+            <path d="M 150 55 Q 148 75 149 88" stroke="#555" stroke-width="2" fill="none"/>
+
+            <!-- Secondary Wi-Fi / 4G antenna -->
+            <line x1="104" y1="44" x2="104" y2="26" stroke="#888" stroke-width="2"/>
+            <line x1="100" y1="26" x2="108" y2="26" stroke="#888" stroke-width="1.5"/>
+            <line x1="196" y1="44" x2="196" y2="28" stroke="#888" stroke-width="2"/>
+            <line x1="192" y1="28" x2="200" y2="28" stroke="#888" stroke-width="1.5"/>
+
+            <!-- ── ENCLOSURE ── -->
+            <rect x="78" y="154" width="144" height="108" rx="4" fill="url(#encl)" stroke="#444" stroke-width="1.5"/>
+            <!-- Rack ears -->
+            <rect x="62" y="162" width="18" height="88" rx="2" fill="#1e1e1e" stroke="#333" stroke-width=".8"/>
+            <rect x="220" y="162" width="18" height="88" rx="2" fill="#1e1e1e" stroke="#333" stroke-width=".8"/>
+            <!-- Rack ear holes -->
+            <circle cx="71" cy="176" r="3.5" fill="#111" stroke="#2a2a2a" stroke-width=".5"/>
+            <circle cx="71" cy="236" r="3.5" fill="#111" stroke="#2a2a2a" stroke-width=".5"/>
+            <circle cx="229" cy="176" r="3.5" fill="#111" stroke="#2a2a2a" stroke-width=".5"/>
+            <circle cx="229" cy="236" r="3.5" fill="#111" stroke="#2a2a2a" stroke-width=".5"/>
+
+            <!-- Front panel top bevel -->
+            <rect x="80" y="154" width="140" height="5" rx="2" fill="#3a3a3a"/>
+
+            <!-- ── OLED DISPLAY ── -->
+            <rect x="86" y="168" width="88" height="40" rx="2" fill="#030a0e" stroke="#1a3040" stroke-width=".9"/>
+            <text font-family="monospace" font-size="5" fill="rgba(74,159,212,.45)" x="89" y="178">APOGEE CORS-200</text>
+            <line x1="86" y1="181" x2="174" y2="181" stroke="rgba(74,159,212,.1)" stroke-width=".5"/>
+            <text font-family="monospace" font-size="5.5" fill="#4ade80" x="89" y="190">ONLINE · STREAMING</text>
+            <text font-family="monospace" font-size="4.8" fill="rgba(255,255,255,.35)" x="89" y="199">SATS:28  AGE:0.4s</text>
+            <text font-family="monospace" font-size="4.5" fill="rgba(74,159,212,.4)" x="89" y="206">UPT: 14d 06h 22m</text>
+
+            <!-- Keypad -->
+            <rect x="182" y="170" width="11" height="9" rx="1.5" fill="#1a1a1a" stroke="#2a2a2a" stroke-width=".6"/>
+            <rect x="195" y="170" width="11" height="9" rx="1.5" fill="#1a1a1a" stroke="#2a2a2a" stroke-width=".6"/>
+            <rect x="182" y="182" width="11" height="9" rx="1.5" fill="#1a1a1a" stroke="#2a2a2a" stroke-width=".6"/>
+            <rect x="195" y="182" width="11" height="9" rx="1.5" fill="#0f1e30" stroke="#1e3448" stroke-width=".6"/>
+            <text font-family="monospace" font-size="5.5" fill="rgba(255,255,255,.25)" x="184.5" y="177">▲</text>
+            <text font-family="monospace" font-size="5.5" fill="rgba(255,255,255,.25)" x="197.5" y="177">▼</text>
+            <text font-family="monospace" font-size="5.5" fill="rgba(255,255,255,.25)" x="185" y="189">◀</text>
+            <text font-family="monospace" font-size="5" fill="#4a9fd4" x="197.5" y="189">OK</text>
+
+            <!-- ── LED ROW ── -->
+            <circle class="lg" cx="90" cy="222" r="4" fill="#22c55e"/>
+            <circle class="eb" cx="102" cy="222" r="4" fill="#3b82f6"/>
+            <circle cx="114" cy="222" r="4" fill="#f59e0b" opacity=".7"/>
+            <circle cx="126" cy="222" r="3" fill="#f87171" opacity=".5"/>
+            <text font-family="monospace" font-size="3.8" fill="rgba(255,255,255,.2)" x="86" y="232">PWR  ETH  4G   ERR</text>
+
+            <!-- ── PORTS ── -->
+            <!-- Ethernet -->
+            <rect x="142" y="215" width="22" height="16" rx="1.5" fill="#0d0d0d" stroke="#1e1e1e" stroke-width=".7"/>
+            <rect x="145" y="217" width="16" height="12" rx="1" fill="#080808" stroke="#1a1a1a" stroke-width=".5"/>
+            <text font-family="monospace" font-size="3.8" fill="rgba(255,255,255,.18)" x="144" y="237">ETH</text>
+            <!-- USB -->
+            <rect x="168" y="215" width="20" height="16" rx="1.5" fill="#0d0d0d" stroke="#1e1e1e" stroke-width=".7"/>
+            <rect x="171" y="217" width="14" height="12" rx="1" fill="#080808" stroke="#1a1a1a" stroke-width=".5"/>
+            <text font-family="monospace" font-size="3.8" fill="rgba(255,255,255,.18)" x="169" y="237">USB</text>
+            <!-- RS232 -->
+            <rect x="192" y="215" width="22" height="16" rx="1.5" fill="#0d0d0d" stroke="#1e1e1e" stroke-width=".7"/>
+            <text font-family="monospace" font-size="3.8" fill="rgba(255,255,255,.15)" x="193.5" y="226">RS232</text>
+            <text font-family="monospace" font-size="3.8" fill="rgba(255,255,255,.18)" x="196" y="237">SER</text>
+
+            <!-- Power button -->
+            <circle cx="214" cy="186" r="10" fill="#141414" stroke="#2a2a2a" stroke-width=".8"/>
+            <circle cx="214" cy="186" r="6.5" fill="#0e0e0e" stroke="#22c55e" stroke-width=".9"/>
+            <text font-family="monospace" font-size="9" fill="#22c55e" x="210" y="190">⏻</text>
+
+            <!-- Bottom label -->
+            <text font-family="monospace" font-size="3.8" fill="rgba(255,255,255,.1)" text-anchor="middle" x="150" y="250">CORS-200 · CONTINUOUSLY OPERATING REFERENCE STATION · APOGEE GNSS</text>
+          </svg>
+        </div>
+        <div class="prod-title">CORS Reference Station</div>
+        <div class="prod-desc">Continuously operating GNSS base station on custom Linux SOM. Full custom driver development: SPI OLED, GNSS chip, keypad, RS232. Motherboard designed with Ethernet, USB Hub, and Li-Ion charger. Real-time NTRIP streaming.</div>
+        <div class="prod-tags">
+          <span class="ptag">Embedded Linux</span><span class="ptag">Buildroot</span>
+          <span class="ptag">Ethernet</span><span class="ptag">4G LTE</span>
+          <span class="ptag">SOM Design</span><span class="ptag">Custom Drivers</span>
+          <span class="ptag">Socket API</span>
+        </div>
+      </div>
+    </div><!-- /prod-grid -->
+
+    <!-- Photo upload row -->
+    <div class="photo-row-label">// Add your product & field photos — click any slot to upload</div>
+    <div class="photo-row">
+      <div class="pslot">
+        <input type="file" accept="image/*" onchange="loadSlot(this,'ph1','ph1h')">
+        <img id="ph1" class="loaded" style="display:none" alt="">
+        <div class="pslot-hover"><span>Upload Photo</span></div>
+        <div id="ph1h"><div class="pslot-icon">📷</div><div class="pslot-label">Product Photo<em>GNSS Receiver</em></div></div>
+      </div>
+      <div class="pslot">
+        <input type="file" accept="image/*" onchange="loadSlot(this,'ph2','ph2h')">
+        <img id="ph2" class="loaded" style="display:none" alt="">
+        <div class="pslot-hover"><span>Upload Photo</span></div>
+        <div id="ph2h"><div class="pslot-icon">🌍</div><div class="pslot-label">Field Deployment<em>In-Use Photo</em></div></div>
+      </div>
+      <div class="pslot">
+        <input type="file" accept="image/*" onchange="loadSlot(this,'ph3','ph3h')">
+        <img id="ph3" class="loaded" style="display:none" alt="">
+        <div class="pslot-hover"><span>Upload Photo</span></div>
+        <div id="ph3h"><div class="pslot-icon">🔧</div><div class="pslot-label">PCB Design<em>Hardware Photo</em></div></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════ ABOUT ══════════ -->
 <section id="about">
-  <div class="section-inner">
-    <div class="section-label">01 // Profile</div>
-    <div class="section-title">WHO I AM</div>
-    <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start;">
-      <div>
-        <p style="font-size:16px; line-height:1.8; margin-bottom:20px;">
-          I'm an embedded engineer who lives at the intersection of hardware and software — writing bare-metal firmware that controls physical systems with precision and reliability.
-        </p>
-        <p style="font-size:16px; line-height:1.8; margin-bottom:20px;">
-          My career spans two companies: <strong style="color:#fff;">Domautics</strong> (home automation, IoT) and <strong style="color:#fff;">Apogee GNSS</strong> (high-accuracy positioning, drones, and industrial devices). I take products from napkin sketch to manufacturing-ready hardware.
-        </p>
-        <p style="font-size:16px; line-height:1.8;">
-          I hold a Diploma in Electronics (80%) and speak C, C++, and Python fluently — with hardware design as a native language.
-        </p>
-      </div>
-      <div class="terminal">
-        <div class="terminal-bar">
-          <div class="dot r"></div>
-          <div class="dot y"></div>
-          <div class="dot g"></div>
-          <span class="terminal-title">mayank@apogee-gnss:~$</span>
-        </div>
-        <div class="terminal-body">
-          <div><span class="t-prompt">$</span> <span class="t-cmd">cat profile.json</span></div>
-          <span class="t-blank"></span>
-          <div><span class="t-out">{</span></div>
-          <div>&nbsp;&nbsp;<span class="t-key">"name"</span>: <span class="t-val">"Mayank Patel"</span>,</div>
-          <div>&nbsp;&nbsp;<span class="t-key">"role"</span>: <span class="t-val">"Embedded Engineer"</span>,</div>
-          <div>&nbsp;&nbsp;<span class="t-key">"experience"</span>: <span class="t-val">"8 years"</span>,</div>
-          <div>&nbsp;&nbsp;<span class="t-key">"location"</span>: <span class="t-val">"Delhi, India"</span>,</div>
-          <div>&nbsp;&nbsp;<span class="t-key">"specialties"</span>: [</div>
-          <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-val">"GNSS/RTK Systems"</span>,</div>
-          <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-val">"FreeRTOS Firmware"</span>,</div>
-          <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-val">"PCB & Schematic Design"</span>,</div>
-          <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-val">"Embedded Linux"</span>,</div>
-          <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-val">"Drone Systems"</span></div>
-          <div>&nbsp;&nbsp;],</div>
-          <div>&nbsp;&nbsp;<span class="t-key">"status"</span>: <span class="t-val">"available"</span></div>
-          <div><span class="t-out">}</span></div>
-          <span class="t-blank"></span>
-          <div><span class="t-prompt">$</span> <span class="cursor"></span></div>
+  <div class="about-img-side">
+    <div class="about-img-main">
+      <input type="file" accept="image/*" onchange="loadSlot(this,'aImg','aHint')">
+      <img id="aImg" class="loaded" style="display:none" alt="Mayank Patel">
+      <div class="pslot-hover"><span>Upload Your Photo</span></div>
+      <div id="aHint" style="text-align:center;padding:48px;pointer-events:none">
+        <div style="font-size:52px;opacity:.1;margin-bottom:12px">👤</div>
+        <div style="font-family:var(--mono);font-size:10px;color:rgba(255,255,255,.18);letter-spacing:.1em;text-transform:uppercase;line-height:1.7">
+          <em style="color:rgba(255,255,255,.28);font-style:normal;display:block">Your Photo Here</em>
+          Click to upload
         </div>
       </div>
+    </div>
+    <div class="about-cap">
+      <div class="about-cap-label">Currently at</div>
+      <div class="about-cap-text">Senior Embedded Engineer · Apogee GNSS Pvt. Ltd. · Delhi, India</div>
+    </div>
+  </div>
+  <div class="about-text">
+    <div class="sec-label">About Me</div>
+    <h2 class="sec-heading" style="margin-bottom:24px">Built From<br><em>The Ground Up</em></h2>
+    <p class="about-p reveal">I'm an embedded engineer who owns the complete product — schematic capture, PCB layout, bootloader, RTOS firmware, and Linux drivers. <strong>8 years of taking hardware from napkin to production</strong> across GNSS, IoT, drones, and medical devices.</p>
+    <p class="about-p reveal">My work at <strong>Apogee GNSS</strong> includes designing military-grade GNSS receivers now in service with the Indian Armed Forces — precision systems that operate in the most demanding conditions imaginable.</p>
+    <p class="about-p reveal">At <strong>Domautics</strong> I built the firmware foundations for connected home products before moving into high-accuracy positioning systems. Every product I ship, I own end to end.</p>
+    <div class="about-meta reveal">
+      <div class="meta-item"><div class="meta-label">Education</div><div class="meta-val">Diploma Electronics · 80%</div></div>
+      <div class="meta-item"><div class="meta-label">Location</div><div class="meta-val">Delhi, India</div></div>
+      <div class="meta-item"><div class="meta-label">Experience</div><div class="meta-val">8+ Years Embedded</div></div>
+      <div class="meta-item"><div class="meta-label">Status</div><div class="meta-val" style="color:var(--teal)">Open to Opportunities</div></div>
     </div>
   </div>
 </section>
 
-<div class="divider"></div>
-
-<!-- SKILLS -->
+<!-- ══════════ SKILLS ══════════ -->
 <section id="skills">
-  <div class="section-inner">
-    <div class="section-label">02 // Capabilities</div>
-    <div class="section-title">TECHNICAL SKILLS</div>
-    <div class="skills-grid">
-
-      <div class="skill-card">
-        <div class="skill-card-icon">⚡</div>
-        <div class="skill-card-title">Firmware & RTOS</div>
-        <div class="skill-tags">
-          <span class="tag">C / C++</span>
-          <span class="tag">FreeRTOS</span>
-          <span class="tag">ChibiOS</span>
-          <span class="tag">Bare-Metal</span>
-          <span class="tag">Interrupt Handling</span>
-          <span class="tag">Memory Mgmt</span>
-          <span class="tag">OTA Updates</span>
-          <span class="tag">Bootloader</span>
+  <div class="sk-wrap">
+    <div class="sec-label">Technical Arsenal</div>
+    <h2 class="sec-heading">Core<br><em>Competencies</em></h2>
+    <div class="sk-grid">
+      <div class="sk-card reveal">
+        <div class="sk-card-icon">⚡</div>
+        <div class="sk-card-name">Firmware & RTOS</div>
+        <div class="sk-items">
+          <div class="sk-item hi">C / C++ Bare-Metal</div>
+          <div class="sk-item hi">FreeRTOS · ChibiOS</div>
+          <div class="sk-item hi">Bootloader & OTA</div>
+          <div class="sk-item">Interrupt Handling</div>
+          <div class="sk-item">Memory Management</div>
+          <div class="sk-item">Low-Power Design</div>
+          <div class="sk-item">Custom Protocol Design</div>
         </div>
       </div>
-
-      <div class="skill-card">
-        <div class="skill-card-icon">🔌</div>
-        <div class="skill-card-title">Microcontrollers</div>
-        <div class="skill-tags">
-          <span class="tag orange">STM32</span>
-          <span class="tag orange">ARM Cortex-M</span>
-          <span class="tag orange">STM8</span>
-          <span class="tag orange">Renesas Synergy</span>
-          <span class="tag orange">STM32MP</span>
-          <span class="tag orange">Raspberry Pi</span>
-          <span class="tag orange">BeagleBone</span>
+      <div class="sk-card reveal">
+        <div class="sk-card-icon">🔌</div>
+        <div class="sk-card-name">Microcontrollers</div>
+        <div class="sk-items">
+          <div class="sk-item hi">STM32 (all families)</div>
+          <div class="sk-item hi">ARM Cortex-M Series</div>
+          <div class="sk-item hi">Renesas Synergy</div>
+          <div class="sk-item">STM8</div>
+          <div class="sk-item">Raspberry Pi / CM4</div>
+          <div class="sk-item">BeagleBone Black</div>
+          <div class="sk-item">STM32MP (Linux SOM)</div>
         </div>
       </div>
-
-      <div class="skill-card">
-        <div class="skill-card-icon">📡</div>
-        <div class="skill-card-title">Communication Protocols</div>
-        <div class="skill-tags">
-          <span class="tag">UART</span>
-          <span class="tag">I2C</span>
-          <span class="tag">SPI</span>
-          <span class="tag">CAN</span>
-          <span class="tag">MODBUS</span>
-          <span class="tag">RS485</span>
-          <span class="tag">USB</span>
-          <span class="tag">BLE</span>
-          <span class="tag">Ethernet</span>
-          <span class="tag">4G/LTE</span>
-          <span class="tag">Wi-Fi</span>
+      <div class="sk-card reveal">
+        <div class="sk-card-icon">📡</div>
+        <div class="sk-card-name">Comm & Connectivity</div>
+        <div class="sk-items">
+          <div class="sk-item hi">UART · I2C · SPI · CAN</div>
+          <div class="sk-item hi">BLE 5.0 · Wi-Fi · 4G LTE</div>
+          <div class="sk-item hi">MODBUS RTU · RS485</div>
+          <div class="sk-item">USB-FS/HS · USB Host</div>
+          <div class="sk-item">Ethernet (LWIP)</div>
+          <div class="sk-item">Socket Programming</div>
+          <div class="sk-item">NTRIP / RTCMv3</div>
         </div>
       </div>
-
-      <div class="skill-card">
-        <div class="skill-card-icon">🛰️</div>
-        <div class="skill-card-title">GNSS & Navigation</div>
-        <div class="skill-tags">
-          <span class="tag green">RTK (Real-Time Kinematic)</span>
-          <span class="tag green">PPK</span>
-          <span class="tag green">Multi-Frequency GNSS</span>
-          <span class="tag green">EKF / Kalman Filter</span>
-          <span class="tag green">IMU Tilt Compensation</span>
-          <span class="tag green">Sensor Fusion</span>
-          <span class="tag green">Ardupilot</span>
+      <div class="sk-card reveal">
+        <div class="sk-card-icon">🛰️</div>
+        <div class="sk-card-name">GNSS & Navigation</div>
+        <div class="sk-items">
+          <div class="sk-item hi">RTK Real-Time Kinematic</div>
+          <div class="sk-item hi">PPK Post-Processing</div>
+          <div class="sk-item hi">Extended Kalman Filter</div>
+          <div class="sk-item">6-DoF IMU Tilt Comp.</div>
+          <div class="sk-item">Sensor Fusion</div>
+          <div class="sk-item">Ardupilot · PID Control</div>
+          <div class="sk-item">NavIC / Multi-Const.</div>
         </div>
       </div>
-
-      <div class="skill-card">
-        <div class="skill-card-icon">🐧</div>
-        <div class="skill-card-title">Embedded Linux</div>
-        <div class="skill-tags">
-          <span class="tag">Buildroot</span>
-          <span class="tag">Kernel Config</span>
-          <span class="tag">GPIO Drivers</span>
-          <span class="tag">I2C Drivers</span>
-          <span class="tag">IOCTL</span>
-          <span class="tag">Multi-threading</span>
-          <span class="tag">Socket API</span>
-          <span class="tag">SOM Design</span>
+      <div class="sk-card reveal">
+        <div class="sk-card-icon">🐧</div>
+        <div class="sk-card-name">Embedded Linux</div>
+        <div class="sk-items">
+          <div class="sk-item hi">Buildroot Custom Images</div>
+          <div class="sk-item hi">Kernel Config & Build</div>
+          <div class="sk-item">GPIO / I2C Drivers</div>
+          <div class="sk-item">IOCTL & UDEV</div>
+          <div class="sk-item">Multi-threading (pthreads)</div>
+          <div class="sk-item">SOM PCB Design</div>
+          <div class="sk-item">Python Scripting</div>
         </div>
       </div>
-
-      <div class="skill-card">
-        <div class="skill-card-icon">🔧</div>
-        <div class="skill-card-title">Hardware & PCB Design</div>
-        <div class="skill-tags">
-          <span class="tag orange">KiCAD</span>
-          <span class="tag orange">Eagle</span>
-          <span class="tag orange">Schematic Design</span>
-          <span class="tag orange">Power Supply</span>
-          <span class="tag orange">RF Design</span>
-          <span class="tag orange">Battery Charger</span>
-          <span class="tag orange">ADC / DAC</span>
-          <span class="tag orange">OP-AMPS</span>
+      <div class="sk-card reveal">
+        <div class="sk-card-icon">🔧</div>
+        <div class="sk-card-name">Hardware & PCB</div>
+        <div class="sk-items">
+          <div class="sk-item hi">KiCAD · Eagle</div>
+          <div class="sk-item hi">Schematic Capture</div>
+          <div class="sk-item hi">Power Supply Design</div>
+          <div class="sk-item">RF Layout (2W RF, BLE)</div>
+          <div class="sk-item">Li-Ion BMS Design</div>
+          <div class="sk-item">ADC/DAC · Op-Amps</div>
+          <div class="sk-item">Oscilloscope · Logic Ana.</div>
         </div>
       </div>
-
-      <div class="skill-card">
-        <div class="skill-card-icon">🐍</div>
-        <div class="skill-card-title">Python & Tools</div>
-        <div class="skill-tags">
-          <span class="tag">Python</span>
-          <span class="tag">PyQt</span>
-          <span class="tag">Tkinter</span>
-          <span class="tag">OpenCV</span>
-          <span class="tag">NumPy</span>
-          <span class="tag">Pandas</span>
-          <span class="tag">Pyserial</span>
-          <span class="tag">Git</span>
-          <span class="tag">STM32CubeIDE</span>
+      <div class="sk-card reveal">
+        <div class="sk-card-icon">🖥️</div>
+        <div class="sk-card-name">GUI & Display</div>
+        <div class="sk-items">
+          <div class="sk-item hi">TouchGFX</div>
+          <div class="sk-item">TFT + LTDC Interface</div>
+          <div class="sk-item">SDRAM External Memory</div>
+          <div class="sk-item">C# Windows App</div>
+          <div class="sk-item">OLED Driver (SPI)</div>
+          <div class="sk-item">USB Mass Storage</div>
+          <div class="sk-item">eMMC 8GB</div>
         </div>
       </div>
-
-      <div class="skill-card">
-        <div class="skill-card-icon">🖥️</div>
-        <div class="skill-card-title">GUI & Interfaces</div>
-        <div class="skill-tags">
-          <span class="tag green">TouchGFX</span>
-          <span class="tag green">TFT / LTDC</span>
-          <span class="tag green">C# Windows App</span>
-          <span class="tag green">SDRAM</span>
-          <span class="tag green">USB Mass Storage</span>
-          <span class="tag green">eMMC</span>
+      <div class="sk-card reveal">
+        <div class="sk-card-icon">🐍</div>
+        <div class="sk-card-name">Python & Tools</div>
+        <div class="sk-items">
+          <div class="sk-item hi">PyQt · Tkinter GUI</div>
+          <div class="sk-item hi">OpenCV · Image Proc.</div>
+          <div class="sk-item">NumPy · Pandas</div>
+          <div class="sk-item">Pyserial · Geotagging</div>
+          <div class="sk-item">FTP Firmware Tools</div>
+          <div class="sk-item">STM32CubeIDE</div>
+          <div class="sk-item">Git Version Control</div>
         </div>
       </div>
-
     </div>
   </div>
 </section>
 
-<div class="divider"></div>
-
-<!-- EXPERIENCE -->
+<!-- ══════════ EXPERIENCE ══════════ -->
 <section id="experience">
-  <div class="section-inner">
-    <div class="section-label">03 // Work History</div>
-    <div class="section-title">PROJECTS & EXPERIENCE</div>
+  <div class="exp-wrap">
+    <div class="sec-label">Work History</div>
+    <h2 class="sec-heading">Projects<br><em>Shipped</em></h2>
 
     <!-- Apogee -->
-    <div class="exp-company">
-      <div class="exp-company-header">
-        <div>
-          <div class="exp-company-name">Apogee GNSS Pvt. Ltd.</div>
-          <div style="font-size:13px; color:var(--muted); margin-top:4px; font-family:var(--mono);">Senior Embedded Engineer</div>
-        </div>
-        <div class="exp-date">Jun 2019 — Present</div>
+    <div class="company-section reveal">
+      <div class="company-hd">
+        <div class="company-nm">Apogee GNSS Pvt. Ltd.</div>
+        <div class="company-pd">Jun 2019 — Present · Senior Embedded Engineer</div>
       </div>
-      <div class="exp-projects">
-
-        <div class="exp-project">
-          <div class="exp-project-title">🛰️ RTK GNSS Receiver</div>
-          <p>High-precision land surveying receiver with OTA firmware upgrades, multi-RF chip support, and 2–5 cm accuracy via Extended Kalman Filter tilt compensation.</p>
-          <p>Designed 2S-2P Li-Ion charger, custom BLE with 17dB RF amplifier, 8GB eMMC logging, and USB-HS mass storage.</p>
-          <div class="exp-tech">STM32 · FreeRTOS · BLE · 4G · Multi-freq GNSS · EKF · eMMC</div>
-        </div>
-
-        <div class="exp-project">
-          <div class="exp-project-title">📡 CORS Reference Station</div>
-          <p>Continuously operating GNSS base station on custom Linux platform. Implemented SPI OLED, GNSS, keypad, and RS232 drivers from scratch.</p>
-          <p>Designed SOM motherboard with Ethernet, USB Hub, custom power supplies, and socket APIs for web application integration.</p>
-          <div class="exp-tech">C · Linux · Buildroot · Multi-threading · Ethernet · GNSS</div>
-        </div>
-
-        <div class="exp-project">
-          <div class="exp-project-title">🚁 Drone Master</div>
-          <p>Phantom-4 drone attachment for precise digital mapping. Reverse-engineered drone image capture signals to log precise RTK coordinates at every photo event.</p>
-          <p>Built Python geotagging app to post-process and embed centimeter-accurate GPS into captured images.</p>
-          <div class="exp-tech">C · STM32 · Python · RTKLib · GNSS</div>
-        </div>
-
-        <div class="exp-project">
-          <div class="exp-project-title">✈️ Agricultural Flight Controller</div>
-          <p>Custom quad/hexcopter flight controller purpose-built for spraying applications. Custom RTK GNSS antenna design achieving 2–5 cm coordinate accuracy.</p>
-          <p>Extended Ardupilot firmware with custom spraying and indication logic.</p>
-          <div class="exp-tech">C++ · ChibiOS · IMU · Magnetometer · Ardupilot · RTK</div>
-        </div>
-
-        <div class="exp-project">
-          <div class="exp-project-title">🚜 GNSS Land Leveller</div>
-          <p>FreeRTOS firmware for precision land leveling with Android companion app via RS232 custom protocol. Angle sensing over CAN and OTA bootloader.</p>
-          <div class="exp-tech">C · STM32 · FreeRTOS · CAN · RS232 · GNSS</div>
-        </div>
-
-        <div class="exp-project">
-          <div class="exp-project-title">🫁 BiPAP Medical Device</div>
-          <p>Full C firmware for a breathing therapy machine. TouchGFX GUI on TFT with LTDC interface, SDRAM, BLDC motor driver, and air pressure sensors.</p>
-          <p>USB-FS host for logging sleep reports to external USB drives.</p>
-          <div class="exp-tech">C · STM32 · FreeRTOS · TouchGFX · BLDC · LTDC · SDRAM</div>
-        </div>
-
-        <div class="exp-project">
-          <div class="exp-project-title">🚛 Fleet Management System</div>
-          <p>RTOS firmware with FFT-filtered harsh-cornering detection via accelerometer. 4G server communication with FTP-based firmware upgrades and fuel monitoring.</p>
-          <div class="exp-tech">C · Renesas Synergy · GNSS · 4G · SD Card · Power Mgmt</div>
-        </div>
-
-        <div class="exp-project">
-          <div class="exp-project-title">🚦 Traffic Light Controller</div>
-          <p>Master + 4-slave system over RS485 using MODBUS RTU. 4G and Ethernet server connectivity with fault detection for individual lights.</p>
-          <div class="exp-tech">C · STM8 (slave) · STM32 (master) · RS485 · MODBUS</div>
-        </div>
-
-        <div class="exp-project">
-          <div class="exp-project-title">💧 Overhead Tank Controller</div>
-          <p>3-phase motor control, water level and electricity monitoring with continuous cloud publishing. Designed full schematics and firmware.</p>
-          <div class="exp-tech">C · STM32 · 4G · RS485 · RTC · Contactor</div>
-        </div>
-
+      <div class="proj-grid">
+        <div class="proj-card"><span class="proj-icon">🛰️</span><div class="proj-num">01</div><div class="proj-title">RTK GNSS Receiver</div><div class="proj-desc">Land surveying receiver with ±2 cm RTK accuracy, EKF tilt compensation, OTA upgrades, custom BLE 17 dB RF amp, 8 GB eMMC, and 2S-2P Li-Ion charger. Military variants deployed in Indian defence systems.</div><div class="proj-tech">STM32 · FreeRTOS · BLE · 4G · EKF · eMMC · KiCAD</div></div>
+        <div class="proj-card"><span class="proj-icon">📡</span><div class="proj-num">02</div><div class="proj-title">CORS Reference Station</div><div class="proj-desc">Continuously operating GNSS base station. Custom Linux SOM, all device drivers written from scratch (OLED, GNSS chip, keypad). Motherboard with Ethernet, USB Hub, real-time streaming.</div><div class="proj-tech">C · Linux · Buildroot · Ethernet · Socket API</div></div>
+        <div class="proj-card"><span class="proj-icon">🗺️</span><div class="proj-num">03</div><div class="proj-title">Drone Master (PPK Mapping)</div><div class="proj-desc">Phantom-4 attachment for precise digital mapping. Reverse-engineered image capture signals. Python geotagging app embeds RTK coordinates into every captured photograph.</div><div class="proj-tech">C · STM32 · Python · RTKLib</div></div>
+        <div class="proj-card"><span class="proj-icon">✈️</span><div class="proj-num">04</div><div class="proj-title">Agricultural Flight Controller</div><div class="proj-desc">Custom quad/hexcopter flight controller for agricultural spraying with RTK GNSS antenna design achieving 2–5 cm accuracy. Extended Ardupilot with custom spraying and indication logic.</div><div class="proj-tech">C++ · ChibiOS · Ardupilot · RTK · IMU</div></div>
+        <div class="proj-card"><span class="proj-icon">🚜</span><div class="proj-num">05</div><div class="proj-title">GNSS Land Leveller</div><div class="proj-desc">FreeRTOS firmware for precision agriculture. Android companion app via RS232 custom protocol. CAN angle sensor, OTA bootloader.</div><div class="proj-tech">C · STM32 · FreeRTOS · CAN · RS232</div></div>
+        <div class="proj-card"><span class="proj-icon">🫁</span><div class="proj-num">06</div><div class="proj-title">BiPAP Medical Device</div><div class="proj-desc">Full firmware for breathing therapy machine — TouchGFX GUI on TFT (LTDC), external SDRAM, BLDC motor driver, dual air-pressure sensors, USB-FS sleep report logging.</div><div class="proj-tech">C · STM32 · FreeRTOS · TouchGFX · BLDC</div></div>
+        <div class="proj-card"><span class="proj-icon">🚛</span><div class="proj-num">07</div><div class="proj-title">Fleet Management System</div><div class="proj-desc">RTOS firmware with FFT-filtered harsh-cornering detection, 4G server communication, FTP firmware upgrades, fuel monitoring, SD card logging.</div><div class="proj-tech">C · Renesas Synergy · GNSS · 4G · FTP</div></div>
+        <div class="proj-card"><span class="proj-icon">🚦</span><div class="proj-num">08</div><div class="proj-title">Traffic Light Controller</div><div class="proj-desc">1 master + 4 slaves + countdown timers over RS485 MODBUS RTU. 4G and Ethernet server connectivity. Real-time fault detection per light.</div><div class="proj-tech">C · STM8/STM32 · RS485 · MODBUS</div></div>
+        <div class="proj-card"><span class="proj-icon">💧</span><div class="proj-num">09</div><div class="proj-title">Overhead Tank Controller</div><div class="proj-desc">3-phase motor control, water level and electricity monitoring with cloud publishing. Full schematic design.</div><div class="proj-tech">C · STM32 · 4G · RS485 · RTC</div></div>
       </div>
     </div>
 
     <!-- Domautics -->
-    <div class="exp-company">
-      <div class="exp-company-header">
-        <div>
-          <div class="exp-company-name">Domautics Pvt. Ltd.</div>
-          <div style="font-size:13px; color:var(--muted); margin-top:4px; font-family:var(--mono);">Embedded Engineer</div>
-        </div>
-        <div class="exp-date">Oct 2015 — Jun 2019</div>
+    <div class="company-section reveal">
+      <div class="company-hd">
+        <div class="company-nm">Domautics Pvt. Ltd.</div>
+        <div class="company-pd">Oct 2015 — Jun 2019 · Embedded Engineer</div>
       </div>
-      <div class="exp-projects">
-
-        <div class="exp-project">
-          <div class="exp-project-title">💡 Phase-Cut Smart Dimmer</div>
-          <p>Internet-connected TRIAC phase-cut dimmer with zero-cross detection firmware and RF communication protocol to central home automation unit.</p>
-          <div class="exp-tech">C · STM8 · RF · IoT</div>
-        </div>
-
-        <div class="exp-project">
-          <div class="exp-project-title">⚡ Electronic Load</div>
-          <p>Configurable constant-current electronic load with potentiometer control, live current/voltage display, and precise measurement output.</p>
-          <div class="exp-tech">C · STM8 · ADC · Display</div>
-        </div>
-
-        <div class="exp-project">
-          <div class="exp-project-title">👁️ Presence Sensor</div>
-          <p>Low-resolution thermal camera presence detection (body heat signature) with Wi-Fi connectivity for real-time cloud status updates.</p>
-          <div class="exp-tech">C · Thermal Sensor · Wi-Fi · Cloud</div>
-        </div>
-
-        <div class="exp-project">
-          <div class="exp-project-title">🏠 4-Point Home Automation Switch</div>
-          <p>Smart switch controlling 3 lights + 1 fan as part of an integrated home automation ecosystem.</p>
-          <div class="exp-tech">Embedded C · Home Automation</div>
-        </div>
-
+      <div class="proj-grid">
+        <div class="proj-card"><span class="proj-icon">💡</span><div class="proj-num">10</div><div class="proj-title">Phase-Cut Smart Dimmer</div><div class="proj-desc">Internet-connected TRIAC phase-cut dimmer with zero-cross detection and RF protocol to central home automation hub.</div><div class="proj-tech">C · STM8 · RF · IoT</div></div>
+        <div class="proj-card"><span class="proj-icon">⚡</span><div class="proj-num">11</div><div class="proj-title">Electronic Load</div><div class="proj-desc">Configurable constant-current electronic load with potentiometer control and live current/voltage display.</div><div class="proj-tech">C · STM8 · ADC · Display</div></div>
+        <div class="proj-card"><span class="proj-icon">👁️</span><div class="proj-num">12</div><div class="proj-title">Thermal Presence Sensor</div><div class="proj-desc">Low-resolution thermal camera detects human body heat for presence sensing. Wi-Fi connectivity for real-time cloud updates.</div><div class="proj-tech">C · Thermal Sensor · Wi-Fi</div></div>
       </div>
     </div>
   </div>
 </section>
 
-<div class="divider"></div>
-
-<!-- CONTACT -->
+<!-- ══════════ CONTACT ══════════ -->
 <section id="contact">
-  <div class="section-inner">
-    <div class="section-label">04 // Contact</div>
-    <div class="section-title">GET IN TOUCH</div>
-    <p style="font-size:16px; color:var(--text); max-width:500px; margin-bottom:40px;">
-      Available for challenging embedded engineering roles, consulting, or product development partnerships.
-    </p>
-    <div class="contact-grid">
-      <a href="mailto:mayankpatel468@gmail.com" class="contact-item">
-        <div class="contact-icon">✉️</div>
-        <div>
-          <div class="contact-label">Email</div>
-          <div class="contact-value">mayankpatel468@gmail.com</div>
-        </div>
-      </a>
-      <a href="tel:+918802846486" class="contact-item">
-        <div class="contact-icon">📱</div>
-        <div>
-          <div class="contact-label">Phone</div>
-          <div class="contact-value">+91-8802846486</div>
-        </div>
-      </a>
-      <a href="https://github.com/mayankpatel97" target="_blank" class="contact-item">
-        <div class="contact-icon">⌥</div>
-        <div>
-          <div class="contact-label">GitHub</div>
-          <div class="contact-value">github.com/mayankpatel97</div>
-        </div>
-      </a>
-      <div class="contact-item">
-        <div class="contact-icon">📍</div>
-        <div>
-          <div class="contact-label">Location</div>
-          <div class="contact-value">Delhi, India</div>
-        </div>
-      </div>
+  <div class="contact-l">
+    <div class="sec-label">Let's Talk</div>
+    <h2 class="contact-heading">Let's Build<br><em>Something</em><br>Remarkable.</h2>
+    <p class="contact-sub">Available for embedded engineering roles, GNSS/defence hardware consulting, and product development partnerships. Based in Delhi, working globally.</p>
+    <a href="mailto:mayankpatel468@gmail.com" class="btn-solid" style="display:inline-flex">Send Email →</a>
+  </div>
+  <div class="contact-r">
+    <a href="mailto:mayankpatel468@gmail.com" class="c-card">
+      <div class="c-card-l"><div class="c-icon">✉️</div><div><div class="c-label">Email</div><div class="c-val">mayankpatel468@gmail.com</div></div></div>
+      <span class="c-arrow">→</span>
+    </a>
+    <a href="tel:+918802846486" class="c-card">
+      <div class="c-card-l"><div class="c-icon">📱</div><div><div class="c-label">Phone</div><div class="c-val">+91-8802846486</div></div></div>
+      <span class="c-arrow">→</span>
+    </a>
+    <a href="https://github.com/mayankpatel97" target="_blank" class="c-card">
+      <div class="c-card-l"><div class="c-icon">💻</div><div><div class="c-label">GitHub</div><div class="c-val">github.com/mayankpatel97</div></div></div>
+      <span class="c-arrow">↗</span>
+    </a>
+    <div class="c-card">
+      <div class="c-card-l"><div class="c-icon">📍</div><div><div class="c-label">Location</div><div class="c-val">Delhi, India</div></div></div>
+      <span class="c-arrow" style="opacity:.08">—</span>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
+<!-- ══════════ FOOTER ══════════ -->
 <footer>
-  <p>© 2026 <span>Mayank Patel</span> · Embedded Engineer</p>
-  <p>Built for precision. <span>//</span> Designed to impress.</p>
+  <p>© 2026 <span>Mayank Patel</span> · Embedded Systems Engineer · Delhi, India</p>
+  <p>Designed with precision. Built to last. <span>//</span> Portfolio v3</p>
 </footer>
 
 <script>
-  // Intersection Observer for fade-up animations
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.style.opacity = '1';
-        entry.target.style.transform = 'translateY(0)';
-      }
-    });
-  }, { threshold: 0.1 });
+/* ── Photo upload handlers ── */
+function loadImg(input, imgId, hintId) {
+  const file = input.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    const img = document.getElementById(imgId);
+    const hint = document.getElementById(hintId);
+    img.src = e.target.result;
+    img.style.display = 'block';
+    if (hint) hint.style.display = 'none';
+  };
+  reader.readAsDataURL(file);
+}
+function loadSlot(input, imgId, hintId) {
+  loadImg(input, imgId, hintId);
+}
 
-  document.querySelectorAll('.skill-card, .exp-project').forEach((el, i) => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(20px)';
-    el.style.transition = `opacity 0.5s ease ${i * 0.04}s, transform 0.5s ease ${i * 0.04}s`;
-    observer.observe(el);
+/* ── Scroll reveal ── */
+const ro = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('in'), (Array.from(document.querySelectorAll('.reveal')).indexOf(e.target) % 4) * 80);
+      ro.unobserve(e.target);
+    }
   });
-</script>
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
 
+/* ── Nav shadow on scroll ── */
+window.addEventListener('scroll', () => {
+  document.getElementById('nav').classList.toggle('scrolled', scrollY > 20);
+});
+</script>
 </body>
 </html>
